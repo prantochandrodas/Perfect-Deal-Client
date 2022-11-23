@@ -9,7 +9,12 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
+.backgroundColor{
+  background-color:rgb(252, 251, 251);
+}
+.navbarColor{
+  background-color: rgb(169, 150, 150);
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

@@ -1,0 +1,18 @@
+[
+    {
+      "category_id": "637e7c7b0abc7dd2ee18b068",
+      "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTEI4MTkbV46Rj1P3zJvulsGVnCcC-0xjAlmQ&usqp=CAU",
+      "Company_name": "Hp"
+    },
+    {
+      "category_id": "637e7c7b43258e13c236a04b",
+      "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQi64MW_lKTCC4KLfM6MC4yDztDARwuWMmrXw&usqp=CAU",
+      "Company_name": "Lenevo"
+    },
+    {
+      "category_id": "637e7c7bcb457798112e4c1e",
+      "img": "https://www.cnet.com/a/img/resize/d4c992259e32f3c0f974ba29e62e9aa8422bd3b7/hub/2022/07/07/63546f99-4d45-49e2-b2fb-55e919287e24/dell-xps-17-9720-2022-0773.jpg?auto=webp&fit=crop&height=900&width=1200",
+
+      "Company_name": "Dell"
+    }
+]
