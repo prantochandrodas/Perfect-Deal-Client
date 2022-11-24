@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../../contexts/AuthProvider';
 
 const HeaderNavbar = () => {
+    const {user}=useContext(AuthContext);
+    console.log(user);
     const menu=<>
         
         <li><Link to='/'>Home</Link></li>

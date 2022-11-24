@@ -1,11 +1,19 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import img from '../../assets/img2.jpg'
+import { AuthContext } from '../../contexts/AuthProvider';
 const Signup = () => {
+    const navigate=useNavigate();
+    const {createUser}=useContext(AuthContext);
     const { register, handleSubmit, formState: { errors } } = useForm();
     const handelSignUp = data => {
-        console.log(data)
+        createUser(data.email,data.password)
+        .then(result=>{
+            const user=result.user;
+            console.log(user);
+        })
+        // console.log(data)
     }
     return (
         <div className="hero min-h-screen">
