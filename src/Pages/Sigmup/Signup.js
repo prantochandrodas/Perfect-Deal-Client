@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import img from '../../assets/img2.jpg'
 const Signup = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const handelsignup = data => {
+    const handelSignUp = data => {
 
     }
     return (
@@ -16,7 +16,7 @@ const Signup = () => {
                 </div>
                 <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
                     <h1 className="text-5xl font-bold text-center my-5">Sign Up</h1>
-                    <form className="card-body">
+                    <form onSubmit={handleSubmit(handelSignUp)} className="card-body">
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">name</span>
