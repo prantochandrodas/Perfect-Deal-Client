@@ -3,7 +3,7 @@ import banner from '../../../assets/banner.png'
 const HomeBanner = () => {
     return (
         <div className="hero lg:w-[95%] mx-auto my-4">
-            <div className="hero-content lg:flex-row-reverse w-full">
+            <div className="hero-content flex-col lg:flex-row-reverse w-full">
                 <div className='sm:w-[75%] '>
                     <img alt='' src="https://img.freepik.com/free-psd/website-template-laptop-screen_53876-57297.jpg?w=2000" className='sm:w-full lg:w-[900px] mx-auto rounded'  />
                 

@@ -16,7 +16,7 @@ const HomeCategory = () => {
     return <p className='text-xl'>Loading...</p>
   }
     return (
-       <div className='grid lg:grid-cols-3 gap-5 lg:p-10 sm:p-4'>
+       <div className='grid lg:grid-cols-3 gap-5 lg:p-10 md:p-4'>
             {
                 productCategorys.map(productCategory=><AllCategory 
                     key={productCategory._id}
