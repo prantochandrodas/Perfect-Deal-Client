@@ -3,13 +3,18 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider';
 
 const HeaderNavbar = () => {
-    const {user}=useContext(AuthContext);
+    const {user,logout}=useContext(AuthContext);
     console.log(user);
+    const handelLogout=()=>{
+        logout()
+        .then(()=>{})
+    }
     const menu=<>
         
         <li><Link to='/'>Home</Link></li>
         <li><Link to='/login'>Login</Link></li>
         <li><Link to="/signup">SignUp</Link></li>
+        <li><button onClick={handelLogout}>Logout</button></li>
     </>
     return (
         <div className="navbar navbarColor text-white flex lg:justify-around justify-between">

@@ -1,11 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import img from '../../assets/img2.jpg'
+import { AuthContext } from '../../contexts/AuthProvider';
 const Login = () => {
+    const {login}=useContext(AuthContext);
     const { register, handleSubmit, formState: { errors } } = useForm();
     const handelLogin = data => {
-        console.log(data);
+        login(data.email,data.password)
+        .then(result=>{
+            const user=result.user;
+            console.log(result);
+        })
     }
     return (
         <div className="hero min-h-screen">
