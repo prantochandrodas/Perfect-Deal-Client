@@ -5,7 +5,7 @@ import img from '../../assets/img2.jpg'
 const Login = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const handelLogin = data => {
-
+        console.log(data);
     }
     return (
         <div className="hero min-h-screen">
@@ -33,7 +33,7 @@ const Login = () => {
                         </label>
                         <input  {...register("password", { required: "Password Address is required" })}
                             type="password" placeholder="Password" className="input input-bordered" />
-                        {errors.password && <p className='text-red-600'>{errors.email?.message}</p>}
+                        {errors.password && <p className='text-red-600'>{errors.password?.message}</p>}
                     </div>
                     
                     <p>New to Doctors Portal <Link className='text-secondary' to="/signup">Create new Account</Link></p>

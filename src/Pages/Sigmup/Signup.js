@@ -5,7 +5,7 @@ import img from '../../assets/img2.jpg'
 const Signup = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const handelSignUp = data => {
-
+        console.log(data)
     }
     return (
         <div className="hero min-h-screen">
@@ -21,7 +21,8 @@ const Signup = () => {
                             <label className="label">
                                 <span className="label-text">name</span>
                             </label>
-                            <input type="text" {...register("name", { required: "Email Address is required" })} placeholder="email" className="input input-bordered" />
+                            <input type="text" {...register("name", { required: "Name Address is required" })} placeholder="email" className="input input-bordered" />
+                            {errors.name && <p className='text-red-600'>{errors.name?.message}</p>}
                         </div>
 
                         <div className="form-control">
@@ -38,16 +39,17 @@ const Signup = () => {
                             </label>
                             <input  {...register("password", { required: "Password Address is required" })}
                                 type="password" placeholder="Password" className="input input-bordered" />
-                            {errors.password && <p className='text-red-600'>{errors.email?.message}</p>}
+                            {errors.password && <p className='text-red-600'>{errors.password?.message}</p>}
                         </div>
                         <div className="form-control">
                             <select
                              {...register("role", { required: "Select the role" })}
                             className="select select-bordered w-full max-w-xs">
-                                <option disabled selected>Select Role</option>
+                                 
                                 <option>Buyer</option>
                                 <option>Seller</option>
                             </select>
+                            {errors.role && <p className='text-red-600'>{errors.role?.message}</p>}
                         </div>
                         <p>Already have an account <Link className='text-secondary' to="/login">Please Login</Link></p>
                         <div className="form-control mt-6">
