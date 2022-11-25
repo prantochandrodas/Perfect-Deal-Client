@@ -1,11 +1,19 @@
 import React, { useContext } from 'react';
+import { toast } from 'react-toastify';
 import { AuthContext } from '../../contexts/AuthProvider';
 
 const BookingModal = ({ bookProduct , setBookProduct}) => {
-    const { user } = useContext(AuthContext);
+    const { user
+    
+    } = useContext(AuthContext);
     const {
+        picture,
+        product_name,
+        verified,
         resale_price,
+        _id
     } = bookProduct;
+    // console.log(_id);
     const handelSubmit = event => {
         event.preventDefault();
         const form = event.target;
@@ -16,9 +24,15 @@ const BookingModal = ({ bookProduct , setBookProduct}) => {
         console.log(name,email,phone,location);
 
         const booking={
+            order_id:_id,
+
             name,
             email,
             phone,
+            picture,
+            product_name,
+            verified,
+            resale_price,
             location
         }
         fetch('http://localhost:5000/bookings',{
@@ -31,8 +45,19 @@ const BookingModal = ({ bookProduct , setBookProduct}) => {
         .then(res=>res.json())
         .then(data=>{
             // console.log(data);
-            
-            setBookProduct(null);
+            if (data.acknowledged) {
+                toast.success('Booking successfull', {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                    });
+                setBookProduct(null);
+            }
         })
     }
 

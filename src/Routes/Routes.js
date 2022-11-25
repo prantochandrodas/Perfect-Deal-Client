@@ -1,4 +1,6 @@
+import DashboardLayout from "../dashboard/DashboardLayout/DashboardLayout";
 import Main from "../Layouts/Main/Main";
+import Demo from "../Pages/Demo/Demo";
 import Home from "../Pages/Home/Home/Home";
 import Login from "../Pages/Login/Login";
 import Products from "../Pages/Products/Products";
@@ -32,6 +34,16 @@ const router=createBrowserRouter([
             }
         ]
 
+    },
+    {
+        path:'/dashBoard',
+        element:<DashboardLayout></DashboardLayout>,
+        children:[
+            {
+                path:'/dashBoard',
+                element:<Demo></Demo>
+            }
+        ]
     }
 ]);
 export default router;

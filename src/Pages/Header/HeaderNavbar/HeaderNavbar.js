@@ -12,6 +12,8 @@ const HeaderNavbar = () => {
     const menu = <>
 
         <li><Link to='/'>Home</Link></li>
+        <li><Link to='/dashBoard'>DashBoard</Link></li>
+
         {user?.uid ?
             <li><button onClick={handelLogout}>Logout</button></li> :
             <>
