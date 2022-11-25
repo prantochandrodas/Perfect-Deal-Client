@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider';
-
+import logo from "../../../assets/Perfect DEAl.png"
 const HeaderNavbar = () => {
     const { user, logout } = useContext(AuthContext);
     console.log(user);
@@ -31,6 +31,7 @@ const HeaderNavbar = () => {
                         {menu}
                     </ul>
                 </div>
+                <img src={logo} className="w-[60px] rounded-full" alt="" />
                 <Link to='/' className="btn btn-ghost normal-case text-xl">Perfect Deal</Link>
             </div>
             <div className="navbar-center hidden lg:flex">

@@ -1,0 +1,15 @@
+.productUl li:hover{
+    cursor: pointer;
+   
+}
+.productUl{
+    
+    border-bottom: 1px solid black;
+}
+.productUl li{
+}
+.productUl:hover{
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+}

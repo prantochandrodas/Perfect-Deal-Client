@@ -3,6 +3,7 @@ import Home from "../Pages/Home/Home/Home";
 import Login from "../Pages/Login/Login";
 import Products from "../Pages/Products/Products";
 import Signup from "../Pages/Sigmup/Signup";
+import PrivetRoute from "./PrivetRoute";
 
 
 const { createBrowserRouter } = require("react-router-dom");
@@ -26,7 +27,7 @@ const router=createBrowserRouter([
             },
             {
                 path:'/products/:id',
-                element:<Products></Products>,
+                element:<PrivetRoute><Products></Products></PrivetRoute>,
                  loader:({params})=>fetch(`http://localhost:5000/products/${params.id}`)
             }
         ]
