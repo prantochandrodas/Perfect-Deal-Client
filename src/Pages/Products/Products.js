@@ -45,6 +45,7 @@ const Products = () => {
            {bookProduct &&
             <BookingModal
             bookProduct={bookProduct}
+            setBookProduct={setBookProduct}
             ></BookingModal>}
         </div>
     );

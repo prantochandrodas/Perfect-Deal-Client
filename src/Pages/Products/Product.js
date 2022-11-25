@@ -6,6 +6,7 @@ import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 const Product = ({ product ,setBookProduct}) => {
     const {
         location,
+        condition,
         original_price,
         picture,
         product_name,
@@ -38,6 +39,8 @@ const Product = ({ product ,setBookProduct}) => {
                     <p className='font-bold'>Location: <small>{location}</small></p>
                     <p className='font-bold'>Resale Price:${resale_price} / Original Price:{original_price}</p>
                     <p className='font-bold'>Year of use : {year_of_use}</p>
+                    <p className='font-bold'>Condition : {condition}</p>
+
                     <div className="card-actions justify-end">
                 
                         <label  htmlFor="booking-modal" onClick={()=>setBookProduct(product)}  className="btn btn-primary">Book Product</label>
