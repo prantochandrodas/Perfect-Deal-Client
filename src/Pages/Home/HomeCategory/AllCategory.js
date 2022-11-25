@@ -1,15 +1,16 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const AllCategory = ({ productCategory }) => {
-    const {Company_name,_id,img}=productCategory;
+    const {Company_name,category_id,img}=productCategory;
     return (
-        <div className="card lg:w-80 md:w-[90%]  md:mx-auto  shadow-xl">
-            <figure><img src={img} alt="Shoes" className='md:h-[400px] lg:h-full' /></figure>
+        <div className="card lg:w-80   md:mx-auto  shadow-xl">
+            <figure><img src={img} alt="Shoes" className='md:h-[300px] h-[250px] lg:h-[300px] p-3' /></figure>
             <div className="card-body">
                 <h2 className="card-title">{Company_name}</h2>
                 <p>If a dog chews shoes whose shoes does he choose?</p>
                 <div className="card-actions justify-end">
-                    <button className="btn btn-primary">Buy Now</button>
+                   <Link to={`/products/${category_id}`}> <button  className="btn btn-primary">See All</button></Link>
                 </div>
             </div>
         </div>

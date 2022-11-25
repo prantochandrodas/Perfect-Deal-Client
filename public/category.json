@@ -1,18 +1,97 @@
 [
-    {
-      "category_id": "637e7c7b0abc7dd2ee18b068",
-      "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTEI4MTkbV46Rj1P3zJvulsGVnCcC-0xjAlmQ&usqp=CAU",
-      "Company_name": "Hp"
-    },
-    {
-      "category_id": "637e7c7b43258e13c236a04b",
-      "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQi64MW_lKTCC4KLfM6MC4yDztDARwuWMmrXw&usqp=CAU",
-      "Company_name": "Lenevo"
-    },
-    {
-      "category_id": "637e7c7bcb457798112e4c1e",
-      "img": "https://www.cnet.com/a/img/resize/d4c992259e32f3c0f974ba29e62e9aa8422bd3b7/hub/2022/07/07/63546f99-4d45-49e2-b2fb-55e919287e24/dell-xps-17-9720-2022-0773.jpg?auto=webp&fit=crop&height=900&width=1200",
+ 
+  {
+    "category_id": "637e7c7b0abc7dd2ee18b068",
+    "product_name": "Inifinix hot 10",
+    "condition": "Good",
+    "location": "Dhanmundi 32",
+    "picture": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1ykexlN7YMBXw39cWo6D229qk3MgoR757lJvKu1bOcOdN8X3Z_k-x4L7i987gY9oG--A&usqp=CAU",
+    "resale_price": 9000,
+    "original_price": 17500,
+    "category_name": "Budget phones",
+    "saller_name": "Rakib Hasan",
+    "year_of_use": "1 Year",
+    "posted_date": "20/10/2022",
+    "verified":"verified",
+    "sold_status":"available"
+  
+  },
+  {
+    "category_id": "637e7c7b0abc7dd2ee18b068",
+    "product_name": "Infinix Note 12",
+    "condition": "Good",
+    "location": "Mouchak market",
+    "picture": "https://static-01.daraz.com.bd/p/5f7df7d8d8cc6ee9cdaf34e46ab31769.jpg",
+    "resale_price": 10000,
+    "original_price": 18000,
+    "category_name": "Budget phones",
+    "saller_name": "Ali Hasan",
+    "year_of_use": "6 mounth's",
+    "posted_date": "15/09/2022",
+    "verified":"verified",
+    "sold_status":"available"
+  },
+  {
+    "category_id": "637e7c7b43258e13c236a04b",
+    "product_name": "Redmi Note 11 pro",
+    "condition": "excellent",
+    "location": "Mirpur 2",
+    "picture": "https://static.gadgetandgear.com/tmp/product/20220331_1648723295_751251.png",
+    "resale_price": 18000,
+    "original_price": 30000,
+    "category_name": "Midrange budget phone",
+    "saller_name": "Sravon Das",
+    "year_of_use": "6 mounth's",
+    "posted_time": "15/09/2022",
+    "verified":"verified",
+    "sold_status":"available"
 
-      "Company_name": "Dell"
-    }
+  },
+  {
+    "category_id": "637e7c7b43258e13c236a04b",
+    "product_name": "Samsung Galaxy F13",
+    "condition": "excellent",
+    "location": "Mirpur 10",
+    "picture": "https://www.mobiledokan.com/wp-content/uploads/2022/04/Samsung-Galaxy-A73-5G.jpg",
+    "resale_price": 20000,
+    "original_price": 32000,
+    "category_name": "Midrange budget phone",
+    "saller_name": "Sagor Ahamed",
+    "year_of_use": "4 mounth's",
+    "posted_time": "18/04/2022",
+    "verified":"verified",
+    "sold_status":"available"
+  },
+  {
+    "category_id": "637fb27d5d69268c40706f6d",
+    "product_name": "Samsung Galaxy M53 5G",
+    "condition": "Good",
+    "location": "Mirput 2",
+    "picture": "https://files.foxtrot.com.ua/PhotoNew/img_0_60_8574_0_1_637798486646325947.jpg",
+    "resale_price": 35000,
+    "original_price": 50000,
+    "category_name": "Flagship phones",
+    "saller_name": "Manik Ahamed",
+    "year_of_use": "1 year",
+    "posted_time": "14/07/2022",
+    "verified":"verified",
+    "sold_status":"available"
+  },
+  {
+    "category_id": "637fb27d5d69268c40706f6d",
+    "product_name": "Iphone 11",
+    "condition": "Good",
+    "location": "Samoli",
+    "picture": "https://www.gizmochina.com/wp-content/uploads/2019/09/Apple-iPhone-11-1.jpg",
+    "resale_price": 50000,
+    "original_price":80000,
+    "category_name": "Flagship phones",
+    "saller_name": "Tanvir Ahamad",
+    "year_of_use": "1 year",
+    "posted_time": "10/08/2022",
+    "date": "24/08/2022",
+    "verified":"verified",
+    "sold_status":"available"
+  }
+ 
 ]

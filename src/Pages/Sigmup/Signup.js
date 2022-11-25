@@ -1,20 +1,64 @@
-import React, { useContext } from 'react';
+import { GoogleAuthProvider } from 'firebase/auth';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import img from '../../assets/img2.jpg'
 import { AuthContext } from '../../contexts/AuthProvider';
+import useToken from '../Hooks/UseToken';
 const Signup = () => {
-    const navigate=useNavigate();
-    const {createUser}=useContext(AuthContext);
+
+    const navigate = useNavigate();
+    const { createUser, updateUser } = useContext(AuthContext);
+
     const { register, handleSubmit, formState: { errors } } = useForm();
+
+    const [createUserEmail, setCreateUserEmail] = useState('');
+    const [token] = useToken(createUserEmail);
+
+    if (token) {
+        navigate('/');
+    }
     const handelSignUp = data => {
-        createUser(data.email,data.password)
-        .then(result=>{
-            const user=result.user;
-            console.log(user);
-        })
+        createUser(data.email, data.password, data.role)
+            .then(result => {
+                console.log(data);
+                const userInfo = {
+                    displayName: data.name,
+
+                }
+                updateUser(userInfo)
+                    .then(() => {
+                        saveUser(data.name, data.role, data.email);
+
+                    })
+                    .catch(error => console.log(error))
+                console.log(result);
+            })
         // console.log(data)
     }
+
+    const saveUser = (name, role, email) => {
+        const users = {
+            name,
+            role,
+            email
+
+        }
+        fetch('http://localhost:5000/users', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(users)
+        })
+            .then(res => res.json())
+            .then(data => {
+                setCreateUserEmail(email);
+            })
+    }
+
+
+
     return (
         <div className="hero min-h-screen">
             <div className="hero-content flex-col lg:flex-row-reverse">
@@ -51,11 +95,11 @@ const Signup = () => {
                         </div>
                         <div className="form-control">
                             <select
-                             {...register("role", { required: "Select the role" })}
-                            className="select select-bordered w-full max-w-xs">
-                                 
-                                <option>Buyer</option>
-                                <option>Seller</option>
+                                {...register("role", { required: "Select the role" })}
+                                className="select select-bordered w-full max-w-xs">
+                                <option disabled  value='buyer'>Buyer</option>
+                                <option value='buyer'>Buyer</option>
+                                <option value='seller'>Seller</option>
                             </select>
                             {errors.role && <p className='text-red-600'>{errors.role?.message}</p>}
                         </div>
@@ -63,6 +107,7 @@ const Signup = () => {
                         <div className="form-control mt-6">
                             <button className="btn btn-primary">Sign Up</button>
                         </div>
+
                     </form>
                 </div>
             </div>
