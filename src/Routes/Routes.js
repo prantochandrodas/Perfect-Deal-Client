@@ -8,6 +8,7 @@ import Login from "../Pages/Login/Login";
 import MyOrder from "../Pages/MyOrder/MyOrder";
 import Products from "../Pages/Products/Products";
 import Signup from "../Pages/Sigmup/Signup";
+import AdminRoute from "./AdminRoute";
 import PrivetRoute from "./PrivetRoute";
 
 
@@ -48,11 +49,11 @@ const router=createBrowserRouter([
             },
             {
                 path:'/dashBoard/allUsers',
-                element:<AllUsers></AllUsers>
+                element:<AdminRoute><AllUsers></AllUsers></AdminRoute>
             },
             {
                 path:'/dashBoard/addProduct',
-                element:<AddProduct></AddProduct>
+                element:<AdminRoute><AddProduct></AddProduct></AdminRoute>
             }
         ]
     }

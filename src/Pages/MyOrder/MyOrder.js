@@ -8,14 +8,18 @@ const MyOrder = () => {
     const { data: orders = [], isLoading } = useQuery({
         queryKey: ['orders'],
         queryFn: async () => {
-            const res = await fetch(url);
+            const res = await fetch(url,{
+                headers:{
+                    authorization:`bearar ${localStorage.getItem('accessToken')}`
+                }
+            });
             const data = await res.json();
             return data;
         }
     });
     // console.log(orders.length);
     if (isLoading) {
-        return <p>Loading</p>
+        return <p>Loading...</p>
     }
     return (
         <div>
@@ -34,7 +38,8 @@ const MyOrder = () => {
                     <tbody>
                       
                       {
-                        orders.map((order,i)=>  <tr>
+
+                     orders &&  orders.map((order,i)=>  <tr>
                             <th>{i+1}</th>
                             <td>{order.product_name}</td>
                             <td><img src={order.picture} className="w-[60px]" alt="" /></td>

@@ -1,42 +1,69 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
 const AddProduct = () => {
-    const imgHostKey=process.env.REACT_APP_imgbb_key;
-   console.log(imgHostKey);
+    const imgHostKey = process.env.REACT_APP_imgbb_key;
+    console.log(imgHostKey);
     const { register, formState: { errors }, handleSubmit } = useForm();
     const handelAddProduct = data => {
-        
-        const image=data.picture[0];
+
+        const image = data.picture[0];
         console.log(image);
         const formData = new FormData();
-        formData.append('image',image);
-        const url=`https://api.imgbb.com/1/upload?key=${imgHostKey}`;
-        fetch(url,{
-            method:"POST",
-            body:formData
+        formData.append('image', image);
+        const url = `https://api.imgbb.com/1/upload?key=${imgHostKey}`;
+        fetch(url, {
+            method: "POST",
+            body: formData
         })
-        .then(res=>res.json())
-        .then(imgData=>{
-            if(imgData.success){
-                const addProduct = {
-                    category_name:'',
-                    category_id:data.category_id,
-                    picture:imgData.data.url,
-                    product_name: data.product_name,
-                    saller_name: data.saller_name,
-                    condition:data.condition,
-                    location:data.location,
-                    resale_price:data.resale_price,
-                    original_price:data.original_price,
-                    year_of_use:data.year_of_use,
-                    posted_date:data.posted_date,
-                    verified:'verified',
-                    sold_status:"available"
+            .then(res => res.json())
+            .then(imgData => {
+                if (imgData.success) {
+                    const addProduct = {
+                        category_name: '',
+                        category_id: data.category_id,
+                        picture: imgData.data.url,
+                        product_name: data.product_name,
+                        saller_name: data.saller_name,
+                        condition: data.condition,
+                        location: data.location,
+                        resale_price: data.resale_price,
+                        original_price: data.original_price,
+                        year_of_use: data.year_of_use,
+                        posted_date: data.posted_date,
+                        verified: 'verified',
+                        sold_status: "available"
+                    }
+
+                    fetch('http://localhost:5000/addProduct', {
+                        method: 'POST',
+                        headers: {
+                          'content-type':'application/json',
+                        },
+                        body: JSON.stringify(addProduct)
+
+                    })
+                        .then(res => res.json())
+                        .then(result => {
+                            if(result.acknowledged){
+                                toast.success('Add Product successfull', {
+                                    position: "top-center",
+                                    autoClose: 5000,
+                                    hideProgressBar: false,
+                                    closeOnClick: true,
+                                    pauseOnHover: true,
+                                    draggable: true,
+                                    progress: undefined,
+                                    theme: "light",
+                                    });
+                            }
+                            
+                        })
+
                 }
-            }
-        })
-       
-     
+            })
+
+
 
     }
     return (
@@ -60,7 +87,7 @@ const AddProduct = () => {
                         className="input input-bordered w-full " />
                     {errors.product_name && <p className='text-red-600'>{errors.product_name?.message}</p>}
                 </div>
-        {/* picture  */}
+                {/* picture  */}
                 <div className="form-control w-full max-w-xs">
                     <label className="label"><span className="label-text">Photo</span></label>
                     <input type="file"
