@@ -4,7 +4,7 @@ import { AuthContext } from '../../../contexts/AuthProvider';
 import logo from "../../../assets/Perfect DEAl.png"
 const HeaderNavbar = () => {
     const { user, logout } = useContext(AuthContext);
-    console.log(user);
+    // console.log(user);
     const handelLogout = () => {
         logout()
             .then(() => { })
