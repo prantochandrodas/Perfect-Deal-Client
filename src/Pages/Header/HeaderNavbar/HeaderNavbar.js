@@ -1,13 +1,16 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider';
 import logo from "../../../assets/Perfect DEAl.png"
 const HeaderNavbar = () => {
     const { user, logout } = useContext(AuthContext);
     // console.log(user);
+    const navigate =useNavigate();
     const handelLogout = () => {
         logout()
-            .then(() => { })
+            .then(() => { 
+                navigate('/login')
+            })
     }
     const menu = <>
 

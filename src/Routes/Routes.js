@@ -1,15 +1,19 @@
 import DashboardLayout from "../dashboard/DashboardLayout/DashboardLayout";
 import Main from "../Layouts/Main/Main";
 import AddProduct from "../Pages/AddProduct/AddProduct";
+import AllSellers from "../Pages/AllSellers/AllSellers";
 import AllUsers from "../Pages/AllUsers/AllUsers";
 import Demo from "../Pages/Demo/Demo";
+import Error from "../Pages/Error/Error";
 import Home from "../Pages/Home/Home/Home";
 import Login from "../Pages/Login/Login";
 import MyOrder from "../Pages/MyOrder/MyOrder";
+import MyProducts from "../Pages/MyProducts/MyProducts";
 import Products from "../Pages/Products/Products";
 import Signup from "../Pages/Sigmup/Signup";
 import AdminRoute from "./AdminRoute";
 import PrivetRoute from "./PrivetRoute";
+import SellerRoute from "./SellerRoute";
 
 
 const { createBrowserRouter } = require("react-router-dom");
@@ -35,6 +39,10 @@ const router=createBrowserRouter([
                 path:'/products/:id',
                 element:<PrivetRoute><Products></Products></PrivetRoute>,
                  loader:({params})=>fetch(`http://localhost:5000/products/${params.id}`)
+            },
+            {
+                path:'*',
+                element:<Error></Error>
             }
         ]
 
@@ -45,15 +53,23 @@ const router=createBrowserRouter([
         children:[
             {
                 path:'/dashBoard',
-                element:<MyOrder></MyOrder>
+                element:<PrivetRoute><MyOrder></MyOrder></PrivetRoute>
             },
             {
                 path:'/dashBoard/allUsers',
                 element:<AdminRoute><AllUsers></AllUsers></AdminRoute>
             },
             {
+                path:'/dashBoard/allSellers',
+                element:<AdminRoute><AllSellers></AllSellers></AdminRoute>
+            },
+            {
                 path:'/dashBoard/addProduct',
-                element:<AdminRoute><AddProduct></AddProduct></AdminRoute>
+                element:<SellerRoute><AddProduct></AddProduct></SellerRoute>
+            },
+            {
+                path:'/dashBoard/myproducts',
+                element:<MyProducts></MyProducts>
             }
         ]
     }

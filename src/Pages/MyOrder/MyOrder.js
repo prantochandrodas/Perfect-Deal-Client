@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
 import { AuthContext } from '../../contexts/AuthProvider';
+import Spinner from '../../Spinner/Spinner';
 
 const MyOrder = () => {
     const { user } = useContext(AuthContext);
@@ -19,8 +20,9 @@ const MyOrder = () => {
     });
     // console.log(orders.length);
     if (isLoading) {
-        return <p>Loading...</p>
+        return <Spinner></Spinner>
     }
+    console.log(orders);
     return (
         <div>
             <div className="overflow-x-auto">

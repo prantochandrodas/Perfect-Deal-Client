@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { AuthContext } from '../../contexts/AuthProvider';
 const AddProduct = () => {
+    const {user}=useContext(AuthContext)
+    const navigate=useNavigate();
     const imgHostKey = process.env.REACT_APP_imgbb_key;
     console.log(imgHostKey);
     const { register, formState: { errors }, handleSubmit } = useForm();
@@ -32,7 +36,9 @@ const AddProduct = () => {
                         year_of_use: data.year_of_use,
                         posted_date: data.posted_date,
                         verified: 'verified',
-                        sold_status: "available"
+                        sold_status: "available",
+                        email:user?.email
+
                     }
 
                     fetch('http://localhost:5000/addProduct', {
@@ -56,6 +62,7 @@ const AddProduct = () => {
                                     progress: undefined,
                                     theme: "light",
                                     });
+                                navigate('/dashBoard')
                             }
                             
                         })
@@ -66,6 +73,8 @@ const AddProduct = () => {
 
 
     }
+
+    
     return (
         <div className='w-[50%] p-7 '>
             <h2>Add a doctor</h2>
