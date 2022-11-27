@@ -2,13 +2,15 @@ import React, { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider';
 import logo from "../../../assets/Perfect DEAl.png"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { fa5, faUserAlt } from '@fortawesome/free-solid-svg-icons';
 const HeaderNavbar = () => {
     const { user, logout } = useContext(AuthContext);
-    // console.log(user);
-    const navigate =useNavigate();
+    console.log(user);
+    const navigate = useNavigate();
     const handelLogout = () => {
         logout()
-            .then(() => { 
+            .then(() => {
                 navigate('/login')
             })
     }
@@ -18,7 +20,20 @@ const HeaderNavbar = () => {
         <li><Link to='/dashBoard'>DashBoard</Link></li>
 
         {user?.uid ?
-            <li><button onClick={handelLogout}>Logout</button></li> :
+            <>
+                {
+                    user?.photoURL ?
+                        <li>
+                            <div className="avatar">
+                                <div className="w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                                    <img alt="" src={user?.photoURL} />
+                                </div>
+                            </div>
+                        </li> :
+                        <li><FontAwesomeIcon icon={faUserAlt} className='fa-2xl'></FontAwesomeIcon></li>
+                }
+                <li><button onClick={handelLogout}>Logout</button></li>
+            </> :
             <>
                 <li><Link to='/login'>Login</Link></li>
                 <li><Link to="/signup">SignUp</Link></li>

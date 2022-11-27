@@ -69,7 +69,7 @@ const router=createBrowserRouter([
             },
             {
                 path:'/dashBoard/myproducts',
-                element:<MyProducts></MyProducts>
+                element:<SellerRoute><MyProducts></MyProducts></SellerRoute>
             }
         ]
     }

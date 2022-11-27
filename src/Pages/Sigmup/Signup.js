@@ -6,7 +6,7 @@ import img from '../../assets/img2.jpg'
 import { AuthContext } from '../../contexts/AuthProvider';
 import useToken from '../Hooks/UseToken';
 const Signup = () => {
-
+    const imgHostKey = process.env.REACT_APP_imgbb_key;
     const navigate = useNavigate();
     const { createUser, updateUser } = useContext(AuthContext);
 
@@ -22,17 +22,34 @@ const Signup = () => {
         createUser(data.email, data.password, data.role)
             .then(result => {
                 console.log(data);
-                const userInfo = {
-                    displayName: data.name,
+                const image = data.picture[0];
+                console.log(image);
+                const formData = new FormData();
+                formData.append('image', image);
+                const url = `https://api.imgbb.com/1/upload?key=${imgHostKey}`;
+                fetch(url, {
+                    method: "POST",
+                    body: formData
+                })
+                    .then(res => res.json())
+                    .then(imgData => {
+                        if (imgData.success) {
+                            const userInfo = {
+                                displayName: data.name,
+                                photoURL: imgData.data.url,
+                            }
+                            updateUser(userInfo)
+                                .then(() => {
+                                    saveUser(data.name, data.role, data.email);
 
-                }
-                updateUser(userInfo)
-                    .then(() => {
-                        saveUser(data.name, data.role, data.email);
-
+                                })
+                                .catch(error => console.log(error))
+                            console.log(result);
+                        }
                     })
-                    .catch(error => console.log(error))
-                console.log(result);
+
+
+
             })
         // console.log(data)
     }
@@ -93,11 +110,18 @@ const Signup = () => {
                                 type="password" placeholder="Password" className="input input-bordered" />
                             {errors.password && <p className='text-red-600'>{errors.password?.message}</p>}
                         </div>
+                        <div className="form-control w-full max-w-xs">
+                            <label className="label"><span className="label-text">Photo</span></label>
+                            <input type="file"
+                                {...register("picture", { required: "picture is required" })}
+                                className="input input-bordered w-full max-w-xs" />
+                            {errors.picture && <p className='text-red-600'>{errors.picture?.message}</p>}
+                        </div>
                         <div className="form-control">
                             <select
                                 {...register("role", { required: "Select the role" })}
                                 className="select select-bordered w-full max-w-xs">
-                                <option disabled  value='buyer'>Buyer</option>
+                                <option disabled value='buyer'>Buyer</option>
                                 <option value='buyer'>Buyer</option>
                                 <option value='seller'>Seller</option>
                             </select>

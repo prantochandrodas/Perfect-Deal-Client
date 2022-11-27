@@ -18,7 +18,7 @@ console.log(productCategorys);
   }
   return (
     <div>
-    
+    <h1 className='my-5 text-5xl font-bold text-center'>Product Category</h1>
       <div className='grid lg:grid-cols-3 md:grid-cols-2 gap-5 lg:p-10 md:p-10'>
         {
           productCategorys.map(productCategory => <AllCategory

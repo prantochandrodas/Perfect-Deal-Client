@@ -36,16 +36,15 @@ const Login = () => {
             console.log(user);
             const users={
                 name:user?.displayName,
-                role:'buyer',
-                email:user?.email
-    
+
             }
-            fetch('http://localhost:5000/users',{
-                method:'POST',
-                headers:{
-                    'content-type':'application/json'
-                },
-                body:JSON.stringify(users)
+            
+            fetch(`http://localhost:5000/googleUser?email=${user?.email}&name=${user?.displayName}`,{
+                method:'PUT',
+                // headers:{
+                //     'content-type':'application/json'
+                // },
+               
             })
             .then(res=>res.json())
             .then(data=>{

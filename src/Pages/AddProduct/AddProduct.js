@@ -62,7 +62,8 @@ const AddProduct = () => {
                                     progress: undefined,
                                     theme: "light",
                                     });
-                                navigate('/dashBoard')
+                                navigate('/dashBoard/myproducts')
+                            
                             }
                             
                         })
