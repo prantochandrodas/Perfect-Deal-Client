@@ -4,10 +4,10 @@ import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import img from '../../assets/img2.jpg'
 import { AuthContext } from '../../contexts/AuthProvider';
-import useToken from '../Hooks/UseToken';
+import useToken from '../Hooks/useToken';
 const Login = () => {
-    const [loginUserEmail,setLoginUserEmail]=useState('');
-    const [token]=useToken(loginUserEmail);
+    const [loginUserEmail, setLoginUserEmail] = useState('');
+    const [token] = useToken(loginUserEmail);
     const { login, createUserWithGoogle } = useContext(AuthContext);
     const location = useLocation();
     const navigate = useNavigate();
@@ -16,7 +16,7 @@ const Login = () => {
     const provider = new GoogleAuthProvider();
 
     const { register, handleSubmit, formState: { errors } } = useForm();
-    if(token){
+    if (token) {
         navigate(from, { replace: true });
     }
     const handelLogin = data => {
@@ -25,33 +25,33 @@ const Login = () => {
                 const user = result.user;
                 // console.log(result);
                 setLoginUserEmail(data.email)
-               
+
             })
     }
 
     const handelGoogleSignup = () => {
         createUserWithGoogle(provider)
-        .then(result=>{
-            const user=result.user;
-            console.log(user);
-            const users={
-                name:user?.displayName,
+            .then(result => {
+                const user = result.user;
+                setLoginUserEmail(user?.email);
+                console.log(user);
+                const users = {
+                    name: user?.displayName,
 
-            }
-            
-            fetch(`http://localhost:5000/googleUser?email=${user?.email}&name=${user?.displayName}`,{
-                method:'PUT',
-                // headers:{
-                //     'content-type':'application/json'
-                // },
-               
+                }
+
+                fetch(`http://localhost:5000/googleUser?email=${user?.email}&name=${user?.displayName}`, {
+                    method: 'PUT',
+
+
+                })
+                    .then(res => res.json())
+                    .then(data => {
+
+
+                        navigate(from, { replace: true });
+                    })
             })
-            .then(res=>res.json())
-            .then(data=>{
-                // setCreateUserEmail(email);
-                navigate(from, { replace: true });
-            })
-        })
     }
 
     return (
@@ -85,11 +85,12 @@ const Login = () => {
                         <div className="form-control mt-6">
                             <button className="btn btn-primary">Login</button>
                         </div>
-                        <div>
-                            <Link to='/signup'>  <button className='btn  btn-outline font-bold w-full my-3'>Sign up with email  </button></Link>
-                            <button onClick={handelGoogleSignup} className='btn btn-outline  font-bold w-full'>Sign up with google</button>
-                        </div>
+
                     </form>
+                    <div className='p-5'>
+                        <Link to='/signup'>  <button className='btn  btn-outline font-bold w-full my-3'>Sign up with email  </button></Link>
+                        <button onClick={handelGoogleSignup} className='btn btn-outline  font-bold w-full'>Sign up with google</button>
+                    </div>
                 </div>
             </div>
         </div>

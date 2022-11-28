@@ -3,6 +3,7 @@ import Main from "../Layouts/Main/Main";
 import AddProduct from "../Pages/AddProduct/AddProduct";
 import AllSellers from "../Pages/AllSellers/AllSellers";
 import AllUsers from "../Pages/AllUsers/AllUsers";
+import Blogs from "../Pages/Blogs/Blogs";
 import Demo from "../Pages/Demo/Demo";
 import Error from "../Pages/Error/Error";
 import Home from "../Pages/Home/Home/Home";
@@ -43,6 +44,10 @@ const router=createBrowserRouter([
             {
                 path:'*',
                 element:<Error></Error>
+            },
+            {
+                path:'/blogs',
+                element:<Blogs></Blogs>
             }
         ]
 

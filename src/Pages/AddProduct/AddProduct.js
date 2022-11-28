@@ -45,6 +45,7 @@ const AddProduct = () => {
                         method: 'POST',
                         headers: {
                           'content-type':'application/json',
+                          authorization:`bearar ${localStorage.getItem('accessToken')}`
                         },
                         body: JSON.stringify(addProduct)
 
@@ -62,6 +63,7 @@ const AddProduct = () => {
                                     progress: undefined,
                                     theme: "light",
                                     });
+                                    
                                 navigate('/dashBoard/myproducts')
                             
                             }
@@ -77,13 +79,13 @@ const AddProduct = () => {
 
     
     return (
-        <div className='w-[50%] p-7 '>
-            <h2>Add a doctor</h2>
+        <div className='w-[75%] p-7 '>
+            <h2 className='text-3xl font-bold'>Add a Product</h2>
             <form onSubmit={handleSubmit(handelAddProduct)}>
 
                 {/* name */}
                 <div className="form-control w-full ">
-                    <label className="label"><span className="label-text">Name</span></label>
+                    <label className="label"><span className="label-text text-xl font-bold">Name</span></label>
                     <input type="text"
                         {...register("saller_name", { required: "Name is required" })}
                         className="input input-bordered w-full " />
@@ -91,7 +93,7 @@ const AddProduct = () => {
                 </div>
                 {/* product name  */}
                 <div className="form-control w-full ">
-                    <label className="label"><span className="label-text">Product Name</span></label>
+                    <label className="label"><span className="text-xl font-bold label-text">Product Name</span></label>
                     <input type="text"
                         {...register("product_name", { required: "Product Name is required" })}
                         className="input input-bordered w-full " />
@@ -99,7 +101,7 @@ const AddProduct = () => {
                 </div>
                 {/* picture  */}
                 <div className="form-control w-full max-w-xs">
-                    <label className="label"><span className="label-text">Photo</span></label>
+                    <label className="label"><span className="text-xl font-bold label-text">Photo</span></label>
                     <input type="file"
                         {...register("picture", { required: "picture is required" })}
                         className="input input-bordered w-full max-w-xs" />
@@ -108,7 +110,7 @@ const AddProduct = () => {
 
                 {/* location  */}
                 <div className="form-control w-full ">
-                    <label className="label"><span className="label-text">location</span></label>
+                    <label className="label"><span className="text-xl font-bold label-text">location</span></label>
                     <input type="text"
                         {...register("location", { required: "Location is required" })}
                         className="input input-bordered w-full " />
@@ -117,7 +119,7 @@ const AddProduct = () => {
 
                 {/* resale price  */}
                 <div className="form-control w-full ">
-                    <label className="label"><span className="label-text">Resale Price</span></label>
+                    <label className="label"><span className="text-xl font-bold label-text">Resale Price</span></label>
                     <input type="number"
                         {...register("resale_price", { required: "Resale Price is required" })}
                         className="input input-bordered w-full " />
@@ -126,7 +128,7 @@ const AddProduct = () => {
 
                 {/* original price      */}
                 <div className="form-control w-full ">
-                    <label className="label"><span className="label-text">Original Price</span></label>
+                    <label className="label"><span className="text-xl font-bold label-text">Original Price</span></label>
                     <input type="number"
                         {...register("original_price", { required: "original_price is required" })}
                         className="input input-bordered w-full " />
@@ -134,7 +136,7 @@ const AddProduct = () => {
                 </div>
                 {/* Year of use   */}
                 <div className="form-control w-full ">
-                    <label className="label"><span className="label-text">Year of use</span></label>
+                    <label className="label"><span className="text-xl font-bold label-text">Year of use</span></label>
                     <input type="text"
                         {...register("year_of_use", { required: "year_of_use is required" })}
                         className="input input-bordered w-full " />
@@ -142,14 +144,14 @@ const AddProduct = () => {
                 </div>
                 {/* posted date  */}
                 <div className="form-control w-full ">
-                    <label className="label"><span className="label-text">Date</span></label>
+                    <label className="label"><span className="text-xl font-bold label-text">Date</span></label>
                     <input type="date"
                         {...register("posted_date", { required: "Date is required" })}
                         className="input input-bordered w-full " />
                     {errors.posted_date && <p className='text-red-600'>{errors.posted_date?.message}</p>}
                 </div>
                 <div className="form-control w-full ">
-                    <label className="label"><span className="label-text">Category Name</span></label>
+                    <label className="label"><span className="text-xl font-bold label-text">Category Name</span></label>
                     <select
                         {...register("category_id", { required: "Category is required" })}
                         className="select input-bordered w-full ">
@@ -161,7 +163,7 @@ const AddProduct = () => {
                     {errors.category_id && <p className='text-red-600'>{errors.category_id?.message}</p>}
                 </div>
                 <div className="form-control w-full ">
-                    <label className="label"><span className="label-text">Condition</span></label>
+                    <label className="label"><span className="text-xl font-bold label-text">Condition</span></label>
                     <select
                         {...register("condition", { required: "condition is required" })}
                         className="select input-bordered w-full ">
@@ -172,7 +174,7 @@ const AddProduct = () => {
                     </select>
                     {errors.specialty && <p className='text-red-600'>{errors.specialty?.message}</p>}
                 </div>
-                <input type="submit" className='btn btn-accent w-full' value='Add Doctor' />
+                <input type="submit" className='btn btn-accent w-full my-5'  value='Add Doctor' />
             </form>
         </div>
     );
