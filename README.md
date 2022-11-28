@@ -1,5 +1,10 @@
 # Web site info
-* 1.This 
+* This is mobile selling site.. I made this website using react.js, mongodb,express.js,tailwind and many other things . It has a admin dashBoard. 
+    1. firebase auth system is used of authantication.
+    2. User can chose buyer and seller option when sign up . 
+    3. There are three categorys of product user can see products of his preference
+    4. Seller can see his product in dashboard and add product also
+    5. User can see his orders in dashboard  
     
 
 # Getting Started with Create React App
