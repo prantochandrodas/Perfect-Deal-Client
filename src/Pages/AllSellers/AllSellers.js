@@ -3,12 +3,12 @@ import React from 'react';
 import { toast } from 'react-toastify';
 
 const AllSellers = () => {
-    const { data: allSellers = [], isLoading,refetch } = useQuery({
+    const { data: allSellers = [], isLoading, refetch } = useQuery({
         queryKey: ['sellers'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/allSellers',{
-                headers:{
-                    authorization:`bearar ${localStorage.getItem('accessToken')}`
+            const res = await fetch('http://localhost:5000/allSellers', {
+                headers: {
+                    authorization: `bearar ${localStorage.getItem('accessToken')}`
                 }
             });
             const data = await res.json();
@@ -17,30 +17,81 @@ const AllSellers = () => {
     });
 
     // delete a user
-    const handelDelete=(id)=>{
-        fetch(`http://localhost:5000/users/${id}`,{
-            method:'DELETE',
-           
+    const handelDelete = (id) => {
+        fetch(`http://localhost:5000/users/${id}`, {
+            method: 'DELETE',
+
         })
-        .then(res=>res.json())
-        .then(data=>{
-            if(data.deletedCount>0){
-                console.log(data);
-                toast.error('Seller Deleted', {
-                    position: "top-center",
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "light",
+            .then(res => res.json())
+            .then(data => {
+                if (data.deletedCount > 0) {
+                    console.log(data);
+                    toast.error('Seller Deleted', {
+                        position: "top-center",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
                     });
-                refetch();
-            }
-           
-        })
+                    refetch();
+                }
+
+            })
     }
+    const handelVerified = (email) => {
+        fetch(`http://localhost:5000/allSellers/verified/${email}`, {
+            method: 'PUT',
+            headers: {
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.matchedCount > 0) {
+                    toast.success('Seller verifed successfull', {
+                        position: "top-center",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
+                    });
+                    refetch();
+                }
+            });
+    }
+
+
+    const handelUnVerified = (email) => {
+        fetch(`http://localhost:5000/allSellers/unverify/${email}`, {
+            method: 'PUT',
+            headers: {
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.matchedCount > 0) {
+                    toast.success('Seller unverifed successfull', {
+                        position: "top-center",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
+                    });
+                    refetch();
+                }
+            });
+    }
+
 
     if (isLoading) {
         return <p> Loading...</p>
@@ -56,6 +107,7 @@ const AllSellers = () => {
                             <th>User Name</th>
                             <th>Email</th>
                             <th>Role</th>
+                            <th>Seller Status</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -67,7 +119,13 @@ const AllSellers = () => {
                                 <td>{allSeller.name}</td>
                                 <td>{allSeller.email}</td>
                                 <td>{allSeller.role}</td>
-                                <td><button onClick={()=>handelDelete(allSeller._id)} className='btn btn-error'>Delete</button></td>
+                                {
+                                    allSeller?.verified === "verified" ?
+                                        <td><button onClick={() => handelVerified(allSeller.email)} className='btn btn-primary'>verified</button></td>
+                                        :
+                                        <td><button onClick={() => handelUnVerified(allSeller.email)} className='btn btn-primary'>Uverified</button></td>
+                                }
+                                <td><button onClick={() => handelDelete(allSeller._id)} className='btn btn-error'>Delete</button></td>
                             </tr>)
                         }
 
