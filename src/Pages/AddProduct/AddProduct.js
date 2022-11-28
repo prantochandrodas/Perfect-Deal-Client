@@ -23,6 +23,9 @@ const AddProduct = () => {
             .then(res => res.json())
             .then(imgData => {
                 if (imgData.success) {
+
+                    // get verify from 
+
                     const addProduct = {
                         category_name: '',
                         category_id: data.category_id,

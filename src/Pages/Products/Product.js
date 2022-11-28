@@ -3,7 +3,26 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faF, faFacebook } from '@fortawesome/free-brands-svg-icons';
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
+import { useQuery } from '@tanstack/react-query';
 const Product = ({ product ,setBookProduct}) => {
+
+
+    const { data: allSellers = [], isLoading, refetch } = useQuery({
+        queryKey: ['sellers'],
+        queryFn: async () => {
+            const res = await fetch('http://localhost:5000/allSellers', {
+                headers: {
+                    authorization: `bearar ${localStorage.getItem('accessToken')}`
+                }
+            });
+            const data = await res.json();
+            return data;
+        }
+    });
+
+console.log(allSellers);
+
+
     const {
         location,
         condition,
@@ -13,7 +32,9 @@ const Product = ({ product ,setBookProduct}) => {
         resale_price,
         saller_name,
         verified,
-        year_of_use
+        year_of_use,
+        email
+
 
     } = product;
     console.log(product);
@@ -27,13 +48,17 @@ const Product = ({ product ,setBookProduct}) => {
                 <div className="card-body">
                     <div className='flex items-center'>
                         <h2 className="card-title mr-2 " >Seller: {saller_name}</h2>
-                        {verified === "verified" ?
+                        {
+                            allSellers.map(allSeller=>
+                                allSeller?.email===email && allSeller?.verified === "verified" ?
                             <div>
                                 <FontAwesomeIcon icon={faCheckCircle}></FontAwesomeIcon>
                             </div> :
                             <div>
 
-                            </div>
+                            </div>)
+                            
+                       
                         }
                     </div>
                     <p className='font-bold'>Location: <small>{location}</small></p>

@@ -42,7 +42,7 @@ const AllSellers = () => {
             })
     }
     const handelVerified = (email) => {
-        fetch(`http://localhost:5000/allSellers/verified/${email}`, {
+        fetch(`http://localhost:5000/allSellers/unverifyed/${email}`, {
             method: 'PUT',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -51,7 +51,7 @@ const AllSellers = () => {
             .then(res => res.json())
             .then(data => {
                 if (data.matchedCount > 0) {
-                    toast.success('Seller verifed successfull', {
+                    toast.success('Seller unverifed successfull', {
                         position: "top-center",
                         autoClose: 5000,
                         hideProgressBar: false,
@@ -68,7 +68,7 @@ const AllSellers = () => {
 
 
     const handelUnVerified = (email) => {
-        fetch(`http://localhost:5000/allSellers/unverify/${email}`, {
+        fetch(`http://localhost:5000/allSellers/verified/${email}`, {
             method: 'PUT',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
