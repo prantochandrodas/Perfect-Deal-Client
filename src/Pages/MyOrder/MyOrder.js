@@ -48,10 +48,10 @@ const MyOrder = () => {
                             <td><img src={order.picture} className="w-[60px]" alt="" /></td>
                             <td>${order.resale_price}</td>
                             <td>{
-                                    order.resale_price && !order.payed && <Link to={`/dashBoard/payment/${order._id}`} className='btn btn-primary'>Pay</Link>
+                                    order.resale_price && !order.paid && <Link to={`/dashBoard/payment/${order._id}`} className='btn btn-primary'>Pay</Link>
                                 }
                                 {
-                                    order.resale_price && order.payed && <button className='btn btn-success'>Payed</button>
+                                    order.resale_price && order.paid && <button className='btn btn-success'>Paied</button>
                                 }    
                             </td>
                         </tr>)

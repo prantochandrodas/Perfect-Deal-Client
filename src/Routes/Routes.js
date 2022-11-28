@@ -79,8 +79,8 @@ const router=createBrowserRouter([
             },
             {
                 path:'/dashBoard/payment/:id',
-                element:<Payment></Payment>
-                // loader:({})=>
+                element:<Payment></Payment>,
+                 loader:({params})=>fetch(`http://localhost:5000/bookings/${params.id}`)
             }
         ]
     }
