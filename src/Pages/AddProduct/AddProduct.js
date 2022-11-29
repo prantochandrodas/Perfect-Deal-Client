@@ -38,8 +38,9 @@ const AddProduct = () => {
                         posted_date: data.posted_date,
                         verified: 'verified',
                         sold_status: "available",
-                        email:user?.email
-
+                        email:user?.email,
+                        advertise:false,
+                        paid:false
                     }
 
                     fetch('http://localhost:5000/addProduct', {

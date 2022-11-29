@@ -19,7 +19,7 @@ const Home = () => {
             return data;
         }
     });
-    console.log(products);
+    // console.log(products);
     if(isLoading){
         return <Spinner></Spinner>
     }

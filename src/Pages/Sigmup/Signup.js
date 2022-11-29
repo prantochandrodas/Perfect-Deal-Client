@@ -6,6 +6,7 @@ import img from '../../assets/img2.jpg'
 import { AuthContext } from '../../contexts/AuthProvider';
 import useToken from '../Hooks/useToken';
 const Signup = () => {
+    const [signUpError,setSignUpError]=useState('');
     const imgHostKey = process.env.REACT_APP_imgbb_key;
     const navigate = useNavigate();
     const { createUser, updateUser } = useContext(AuthContext);
@@ -19,6 +20,7 @@ const Signup = () => {
         navigate('/');
     }
     const handelSignUp = data => {
+        setSignUpError('');
         createUser(data.email, data.password, data.role)
             .then(result => {
          
@@ -46,6 +48,9 @@ const Signup = () => {
                                 .catch(error => console.log(error))
                       
                         }
+                    })
+                    .catch(err=>{
+                        setSignUpError(err.message);
                     })
 
 
@@ -131,7 +136,9 @@ const Signup = () => {
                         <div className="form-control mt-6">
                             <button className="btn btn-primary">Sign Up</button>
                         </div>
-
+                        <div>
+                            {signUpError && <p className='text-red-600 my-4 text-xl'>{signUpError}</p>}
+                        </div>
                     </form>
                 </div>
             </div>

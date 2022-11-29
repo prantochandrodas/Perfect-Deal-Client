@@ -4,7 +4,7 @@ import React from 'react';
 const Advertise = ({ product }) => {
 
     const { paid, product_name, picture } = product;
-    console.log(product);
+    // console.log(product);
     return (
         <div>
 

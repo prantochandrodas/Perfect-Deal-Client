@@ -6,6 +6,7 @@ import img from '../../assets/img2.jpg'
 import { AuthContext } from '../../contexts/AuthProvider';
 import useToken from '../Hooks/useToken';
 const Login = () => {
+    const [loginError, setLoginError] = useState('')
     const [loginUserEmail, setLoginUserEmail] = useState('');
     const [token] = useToken(loginUserEmail);
     const { login, createUserWithGoogle } = useContext(AuthContext);
@@ -20,12 +21,16 @@ const Login = () => {
         navigate(from, { replace: true });
     }
     const handelLogin = data => {
+        setLoginError('');
         login(data.email, data.password)
             .then(result => {
                 const user = result.user;
                 // console.log(result);
                 setLoginUserEmail(data?.email)
 
+            })
+            .catch(err => {
+                setLoginError(err.message);
             })
     }
 
@@ -34,7 +39,7 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 setLoginUserEmail(user?.email);
-                
+
                 const users = {
                     name: user?.displayName,
 
@@ -52,6 +57,7 @@ const Login = () => {
                         navigate(from, { replace: true });
                     })
             })
+           
     }
 
     return (
@@ -85,7 +91,9 @@ const Login = () => {
                         <div className="form-control mt-6">
                             <button className="btn btn-primary">Login</button>
                         </div>
-
+                        <div>
+                            {loginError && <p className='text-red-600 my-4 text-xl'>{loginError}</p>}
+                        </div>
                     </form>
                     <div className='p-5'>
                         <Link to='/signup'>  <button className='btn  btn-outline font-bold w-full my-3'>Sign up with email  </button></Link>

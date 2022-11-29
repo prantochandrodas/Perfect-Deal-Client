@@ -142,7 +142,7 @@ const MyProducts = () => {
                                         <button className='btn btn-primary' onClick={() => handelAdvertise(myproduct._id)}>Advertise</button>
                                     }
                                 </td>
-                                <td><button onClick={() => handelDelete(myproduct)} className='btn bg-red-600'>Delete</button></td>
+                                <td><button onClick={() => handelDelete(myproduct._id)} className='btn bg-red-600'>Delete</button></td>
                             </tr>)
                         }
 
