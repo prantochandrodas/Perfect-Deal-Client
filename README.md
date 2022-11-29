@@ -5,7 +5,11 @@
     3. There are three categorys of product user can see products of his preference
     4. payment system is used user can pay for his product.
     5. User can see his orders in dashboard  
-    
+
+
+  adminEmail:admin@gmail.com
+  adminPassword:admin@@@  
+
 
 # Getting Started with Create React App
 
