@@ -50,9 +50,7 @@ const Blogs = () => {
                     However, they all have a different structure and architecture — so first, we’ll look into their architectural differences to understand the philosophy behind them.
                 </p>
             </div>
-            <div>
-                
-            </div>
+            
         </div>
     );
 };
