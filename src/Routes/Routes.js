@@ -10,6 +10,7 @@ import Home from "../Pages/Home/Home/Home";
 import Login from "../Pages/Login/Login";
 import MyOrder from "../Pages/MyOrder/MyOrder";
 import MyProducts from "../Pages/MyProducts/MyProducts";
+import MyWishList from "../Pages/MyWishlist/MyWishList";
 import Payment from "../Pages/Payment/Payment";
 import Products from "../Pages/Products/Products";
 import Signup from "../Pages/Sigmup/Signup";
@@ -42,6 +43,7 @@ const router=createBrowserRouter([
                 element:<PrivetRoute><Products></Products></PrivetRoute>,
                  loader:({params})=>fetch(`http://localhost:5000/products/${params.id}`)
             },
+            
             {
                 path:'*',
                 element:<Error></Error>
@@ -60,6 +62,10 @@ const router=createBrowserRouter([
             {
                 path:'/dashBoard',
                 element:<PrivetRoute><MyOrder></MyOrder></PrivetRoute>
+            },
+            {
+                path:'/dashBoard/wishList',
+                element:<MyWishList></MyWishList>
             },
             {
                 path:'/dashBoard/allUsers',

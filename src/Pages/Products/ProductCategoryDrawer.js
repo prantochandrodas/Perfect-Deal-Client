@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHashtag } from '@fortawesome/free-solid-svg-icons';
 import { useQuery } from '@tanstack/react-query';
 import { Link } from 'react-router-dom';
+import Spinner from '../../Spinner/Spinner';
 const ProductCategoryDrawer = () => {
     const { data: productCategorys = [], isLoading } = useQuery({
         queryKey: ['productCategory'],
@@ -13,7 +14,9 @@ const ProductCategoryDrawer = () => {
             return data;
         }
     });
-  
+  if(isLoading){
+    return <Spinner></Spinner>
+  }
     return (
         <div className='hidden lg:block md:hidden'>
             <div className="drawer drawer-mobile">

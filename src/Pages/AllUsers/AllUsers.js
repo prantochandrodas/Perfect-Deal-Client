@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import { toast } from 'react-toastify';
+import Spinner from '../../Spinner/Spinner';
 
 const AllUsers = () => {
     const { data: allusers = [], isLoading,refetch } = useQuery({
@@ -45,7 +46,7 @@ const AllUsers = () => {
     }
 
     if (isLoading) {
-        return <p> Loading...</p>
+        return <Spinner></Spinner>
     }
     return (
         <div>

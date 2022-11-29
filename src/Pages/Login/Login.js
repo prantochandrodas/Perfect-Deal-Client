@@ -24,7 +24,7 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 // console.log(result);
-                setLoginUserEmail(data.email)
+                setLoginUserEmail(data?.email)
 
             })
     }

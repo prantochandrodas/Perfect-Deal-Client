@@ -18,9 +18,11 @@ const AllSellers = () => {
 
     // delete a user
     const handelDelete = (id) => {
-        fetch(`http://localhost:5000/users/${id}`, {
+        fetch(`http://localhost:5000/seller/${id}`, {
             method: 'DELETE',
-
+            headers: {
+                authorization: `bearar ${localStorage.getItem('accessToken')}`
+            }
         })
             .then(res => res.json())
             .then(data => {
@@ -91,7 +93,7 @@ const AllSellers = () => {
                 }
             });
     }
-
+console.log(allSellers);
 
     if (isLoading) {
         return <p> Loading...</p>
@@ -114,7 +116,7 @@ const AllSellers = () => {
                     <tbody>
 
                         {
-                            allSellers.map((allSeller, i) => <tr>
+                        allSellers &&  allSellers.map((allSeller, i) => <tr>
                                 <th>{i + 1}</th>
                                 <td>{allSeller.name}</td>
                                 <td>{allSeller.email}</td>

@@ -3,7 +3,7 @@
     1. firebase auth system is used of authantication.
     2. User can chose buyer and seller option when sign up . 
     3. There are three categorys of product user can see products of his preference
-    4. Seller can see his product in dashboard and add product also
+    4. payment system is used user can pay for his product.
     5. User can see his orders in dashboard  
     
 

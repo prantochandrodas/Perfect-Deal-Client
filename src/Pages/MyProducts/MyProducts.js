@@ -11,7 +11,7 @@ const MyProducts = () => {
     const { data: myproducts = [], isLoading, refetch } = useQuery({
         queryKey: ['myproducts'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/products?email=${user?.email}`, {
+            const res = await fetch(`http://localhost:5000/myproducts?email=${user?.email}`, {
                 headers: {
                     authorization: `bearar ${localStorage.getItem('accessToken')}`
                 }
@@ -25,7 +25,7 @@ const MyProducts = () => {
     // console.log(bookings);
 
     const handelDelete = (id) => {
-        fetch(`http://localhost:5000/products/${id}`, {
+        fetch(`http://localhost:5000/myproducts/${id}`, {
             method: 'DELETE',
             headers: {
                 authorization: `bearar ${localStorage.getItem('accessToken')}`
