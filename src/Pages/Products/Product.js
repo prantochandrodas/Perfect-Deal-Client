@@ -37,7 +37,7 @@ console.log(allSellers);
 
 
     } = product;
-    console.log(product);
+ 
     return (
         <div>
             <div className="card lg:w-[350px]   md:mx-auto  shadow-xl">

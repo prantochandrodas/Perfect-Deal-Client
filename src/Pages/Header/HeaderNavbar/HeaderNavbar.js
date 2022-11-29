@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { fa5, faUserAlt } from '@fortawesome/free-solid-svg-icons';
 const HeaderNavbar = () => {
     const { user, logout } = useContext(AuthContext);
-    console.log(user);
+  
     const navigate = useNavigate();
     const handelLogout = () => {
         logout()

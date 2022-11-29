@@ -21,7 +21,7 @@ const Signup = () => {
     const handelSignUp = data => {
         createUser(data.email, data.password, data.role)
             .then(result => {
-                console.log(data);
+         
                 const image = data.picture[0];
                 console.log(image);
                 const formData = new FormData();
@@ -44,7 +44,7 @@ const Signup = () => {
 
                                 })
                                 .catch(error => console.log(error))
-                            console.log(result);
+                      
                         }
                     })
 

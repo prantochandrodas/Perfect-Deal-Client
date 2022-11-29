@@ -9,7 +9,7 @@ const CheckoutForm = ({booking}) => {
   const [clientSecret, setClientSecret] = useState("");
   const stripe = useStripe();
   const elements = useElements();
-  const{resale_price,name,email,_id}=booking;
+  const{resale_price,name,email,_id,order_id}=booking;
 
   useEffect(() => {
     // Create PaymentIntent as soon as the page loads
@@ -43,7 +43,7 @@ const CheckoutForm = ({booking}) => {
     });
 
     if (error) {
-      console.log(error);
+     
       setCardError(error.message);
     } else {
       setCardError('');
@@ -72,6 +72,7 @@ setProcessing(true);
           resale_price,
           transActionId:paymentIntent.id,
           email,
+          order_id,
           bookingId:_id
         }
         fetch('http://localhost:5000/payments',{
@@ -84,7 +85,7 @@ setProcessing(true);
         })
         .then(res=>res.json())
         .then(data=>{
-          console.log(data);
+          
          if( data.insertedId){
           setSuccess('Your payment completed');
           setTransActionId(paymentIntent.id);

@@ -12,7 +12,7 @@ const HomeCategory = () => {
       return data;
     }
   });
-console.log(productCategorys);
+
   if (isLoading) {
     return <p className='text-xl'>Loading...</p>
   }

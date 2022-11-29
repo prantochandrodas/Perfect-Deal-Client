@@ -13,7 +13,7 @@ const ProductCategoryDrawer = () => {
             return data;
         }
     });
-    console.log(productCategorys);
+  
     return (
         <div className='hidden lg:block md:hidden'>
             <div className="drawer drawer-mobile">

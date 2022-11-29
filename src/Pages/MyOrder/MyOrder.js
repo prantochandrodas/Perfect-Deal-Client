@@ -23,7 +23,7 @@ const MyOrder = () => {
     if (isLoading ) {
         return <Spinner></Spinner>
     }
-    console.log(orders);
+   
     return (
         <div>
             <div className="overflow-x-auto">

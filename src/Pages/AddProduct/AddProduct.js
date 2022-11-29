@@ -7,12 +7,10 @@ const AddProduct = () => {
     const {user}=useContext(AuthContext)
     const navigate=useNavigate();
     const imgHostKey = process.env.REACT_APP_imgbb_key;
-    console.log(imgHostKey);
     const { register, formState: { errors }, handleSubmit } = useForm();
     const handelAddProduct = data => {
 
         const image = data.picture[0];
-        console.log(image);
         const formData = new FormData();
         formData.append('image', image);
         const url = `https://api.imgbb.com/1/upload?key=${imgHostKey}`;

@@ -5,13 +5,15 @@ import { AuthContext } from '../../contexts/AuthProvider';
 import Spinner from '../../Spinner/Spinner';
 
 const MyProducts = () => {
+
+
     const { user } = useContext(AuthContext);
-    const { data: myproducts = [], isLoading ,refetch} = useQuery({
+    const { data: myproducts = [], isLoading, refetch } = useQuery({
         queryKey: ['myproducts'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/products?email=${user?.email}`,{
-                headers:{
-                    authorization:`bearar ${localStorage.getItem('accessToken')}`
+            const res = await fetch(`http://localhost:5000/products?email=${user?.email}`, {
+                headers: {
+                    authorization: `bearar ${localStorage.getItem('accessToken')}`
                 }
             });
             const data = await res.json();
@@ -19,36 +21,39 @@ const MyProducts = () => {
         }
     });
 
-    const handelDelete=(id)=>{
-        fetch(`http://localhost:5000/products/${id}`,{
-            method:'DELETE',
-            headers:{
-                authorization:`bearar ${localStorage.getItem('accessToken')}`
+
+    // console.log(bookings);
+
+    const handelDelete = (id) => {
+        fetch(`http://localhost:5000/products/${id}`, {
+            method: 'DELETE',
+            headers: {
+                authorization: `bearar ${localStorage.getItem('accessToken')}`
             }
-        }) 
-        .then(res=>res.json())
-        .then(data=>{
-            if(data.deletedCount>0){
-                console.log(data);
-                toast.error('Product Deleted', {
-                    position: "top-center",
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "light",
-                    });
-                refetch();
-            }
-           
         })
+            .then(res => res.json())
+            .then(data => {
+                if (data.deletedCount > 0) {
+
+                    toast.error('Product Deleted', {
+                        position: "top-center",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
+                    });
+                    refetch();
+                }
+
+            })
     }
     if (isLoading) {
         return <Spinner></Spinner>
     }
-    console.log(myproducts);
+
     return (
         <div>
             <div className="overflow-x-auto">
@@ -73,8 +78,15 @@ const MyProducts = () => {
                                 <td>{myproduct.product_name}</td>
                                 <td><img src={myproduct.picture} className="w-[60px]" alt="" /></td>
                                 <td>${myproduct.resale_price}</td>
-                                <td>{myproduct.sold_status}</td>
-                                <td><button onClick={()=>handelDelete(myproduct._id)} className='btn bg-red-600'>Delete</button></td>
+                                <td>
+                                  
+                                    {myproduct.paid ?
+                                    <button className='btn btn-success'>Sold</button>
+                                :
+                                        <button className='btn btn-primary'>Advertise</button>
+                                }
+                                </td>
+                                <td><button onClick={() => handelDelete(myproduct._id)} className='btn bg-red-600'>Delete</button></td>
                             </tr>)
                         }
 

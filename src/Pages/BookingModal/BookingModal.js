@@ -6,6 +6,7 @@ const BookingModal = ({ bookProduct , setBookProduct}) => {
     const { user
     
     } = useContext(AuthContext);
+    console.log(bookProduct);
     const {
         picture,
         product_name,
@@ -60,6 +61,8 @@ const BookingModal = ({ bookProduct , setBookProduct}) => {
             }
         })
     }
+
+    
 
 
     return (

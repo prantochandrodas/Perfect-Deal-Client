@@ -10,7 +10,7 @@ const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PK);
 const Payment = () => {
     const booking = useLoaderData();
     const navigation=useNavigation();
-    console.log(booking);
+    
     const { product_name, resale_price, picture } = booking;
     if(navigation.state === 'loading'){
         return <Spinner></Spinner>

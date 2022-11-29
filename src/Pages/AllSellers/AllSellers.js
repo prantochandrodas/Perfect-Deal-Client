@@ -25,7 +25,7 @@ const AllSellers = () => {
             .then(res => res.json())
             .then(data => {
                 if (data.deletedCount > 0) {
-                    console.log(data);
+                
                     toast.error('Seller Deleted', {
                         position: "top-center",
                         autoClose: 5000,

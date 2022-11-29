@@ -34,7 +34,7 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 setLoginUserEmail(user?.email);
-                console.log(user);
+                
                 const users = {
                     name: user?.displayName,
 
