@@ -6,7 +6,7 @@ import { AuthContext } from '../../contexts/AuthProvider';
 import Spinner from '../../Spinner/Spinner';
 
 const MyProducts = () => {
-    const navigate=useNavigate();
+    const navigate = useNavigate();
 
     const { user } = useContext(AuthContext);
     const { data: myproducts = [], isLoading, refetch } = useQuery({
@@ -53,7 +53,7 @@ const MyProducts = () => {
     }
 
 
-    const handelAdvertise=(id)=>{
+    const handelAdvertise = (id) => {
 
         // const advertise={
         //     product_name:myproduct.product_name,
@@ -62,32 +62,48 @@ const MyProducts = () => {
         //    resale_price:myproduct.resale_price
         // }
 
-        fetch(`http://localhost:5000/advertise/${id}`,{
-            method:'PUT',
-            headers:{
-                authorization:`bearar ${localStorage.getItem('accessToken')}`
+        fetch(`http://localhost:5000/advertise/${id}`, {
+            method: 'PUT',
+            headers: {
+                authorization: `bearar ${localStorage.getItem('accessToken')}`
             },
-         
+
         })
-        .then(res=>res.json())
-        .then(result => {
-           
-                toast.success('Add Advertise successfull', {
-                    position: "top-center",
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "light",
+            .then(res => res.json())
+            .then(result => {
+                if (result.modifiedCount === 0) {
+                    toast.info('Already Advertised', {
+                        position: "top-center",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
+                        });
+                }
+
+                if(result.modifiedCount>0){
+                    toast.success('Add Advertise successfull', {
+                        position: "top-center",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
                     });
-                    
-                navigate('/')
-            
-            
-            
-        })
+    
+                     navigate('/')
+                }
+                // console.log(result);
+              
+
+
+
+            })
     }
 
     if (isLoading) {
@@ -119,12 +135,12 @@ const MyProducts = () => {
                                 <td><img src={myproduct.picture} className="w-[60px]" alt="" /></td>
                                 <td>${myproduct.resale_price}</td>
                                 <td>
-                                  
+
                                     {myproduct.paid ?
-                                    <button className='btn btn-success' >Sold</button>
-                                :
-                                        <button className='btn btn-primary' onClick={()=>handelAdvertise(myproduct._id)}>Advertise</button>
-                                }
+                                        <button className='btn btn-success' >Sold</button>
+                                        :
+                                        <button className='btn btn-primary' onClick={() => handelAdvertise(myproduct._id)}>Advertise</button>
+                                    }
                                 </td>
                                 <td><button onClick={() => handelDelete(myproduct)} className='btn bg-red-600'>Delete</button></td>
                             </tr>)
