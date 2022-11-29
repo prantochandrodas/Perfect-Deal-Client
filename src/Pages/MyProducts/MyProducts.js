@@ -1,11 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../../contexts/AuthProvider';
 import Spinner from '../../Spinner/Spinner';
 
 const MyProducts = () => {
-
+    const navigate=useNavigate();
 
     const { user } = useContext(AuthContext);
     const { data: myproducts = [], isLoading, refetch } = useQuery({
@@ -50,6 +51,45 @@ const MyProducts = () => {
 
             })
     }
+
+
+    const handelAdvertise=(id)=>{
+
+        // const advertise={
+        //     product_name:myproduct.product_name,
+        //     picture:myproduct.picture,
+        //     advertise:true,
+        //    resale_price:myproduct.resale_price
+        // }
+
+        fetch(`http://localhost:5000/advertise/${id}`,{
+            method:'PUT',
+            headers:{
+                authorization:`bearar ${localStorage.getItem('accessToken')}`
+            },
+         
+        })
+        .then(res=>res.json())
+        .then(result => {
+           
+                toast.success('Add Advertise successfull', {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                    });
+                    
+                navigate('/')
+            
+            
+            
+        })
+    }
+
     if (isLoading) {
         return <Spinner></Spinner>
     }
@@ -81,12 +121,12 @@ const MyProducts = () => {
                                 <td>
                                   
                                     {myproduct.paid ?
-                                    <button className='btn btn-success'>Sold</button>
+                                    <button className='btn btn-success' >Sold</button>
                                 :
-                                        <button className='btn btn-primary'>Advertise</button>
+                                        <button className='btn btn-primary' onClick={()=>handelAdvertise(myproduct._id)}>Advertise</button>
                                 }
                                 </td>
-                                <td><button onClick={() => handelDelete(myproduct._id)} className='btn bg-red-600'>Delete</button></td>
+                                <td><button onClick={() => handelDelete(myproduct)} className='btn bg-red-600'>Delete</button></td>
                             </tr>)
                         }
 
