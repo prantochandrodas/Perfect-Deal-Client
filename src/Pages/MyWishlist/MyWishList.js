@@ -8,7 +8,7 @@ import WishModal from './WishModal';
 const MyWishList = () => {
     const [product, setProduct] = useState(null);
     const { user } = useContext(AuthContext);
-    const url = `http://localhost:5000/wishlists?email=${user?.email}`;
+    const url = `https://perfect-deal-server.vercel.app/wishlists?email=${user?.email}`;
     const { data: wishLists = [], isLoading } = useQuery({
         queryKey: ['wishLists'],
         queryFn: async () => {

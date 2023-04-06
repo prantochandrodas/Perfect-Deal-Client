@@ -1,9 +1,10 @@
 import React, { useContext } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate,NavNavLink } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider';
-import logo from "../../../assets/Perfect DEAl.png"
+import logo from "../../../assets/logo.png"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { fa5, faUserAlt } from '@fortawesome/free-solid-svg-icons';
+import './HeaderNavbar.css'
 const HeaderNavbar = () => {
     const { user, logout } = useContext(AuthContext);
   
@@ -16,9 +17,9 @@ const HeaderNavbar = () => {
     }
     const menu = <>
 
-        <li><Link to='/'>Home</Link></li>
-        <li><Link to='/dashBoard'>DashBoard</Link></li>
-        <li><Link to='/blogs'>blogs</Link></li>
+        <li><NavLink to='/'>Home</NavLink></li>
+        <li><NavLink to='/dashBoard'>DashBoard</NavLink></li>
+        <li><NavLink to='/blogs'>blogs</NavLink></li>
 
 
         {user?.uid ?
@@ -37,13 +38,13 @@ const HeaderNavbar = () => {
                 <li><button onClick={handelLogout}>Logout</button></li>
             </> :
             <>
-                <li><Link to='/login'>Login</Link></li>
-                <li><Link to="/signup">SignUp</Link></li>
+                <li><NavLink to='/login'>Login</NavLink></li>
+                <li><NavLink to="/signup">SignUp</NavLink></li>
             </>
         }
     </>
     return (
-        <div className="navbar navbarColor flex lg:justify-around justify-between">
+        <div className="navbar navbarColor  flex lg:justify-around justify-between text-black">
             <div className="navbar-start">
                 <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -53,11 +54,10 @@ const HeaderNavbar = () => {
                         {menu}
                     </ul>
                 </div>
-                <img src={logo} className="w-[60px] rounded-full" alt="" />
-                <Link to='/' className="btn btn-ghost normal-case text-xl text-white">Perfect Deal</Link>
+                <img src={logo} className="w-[120px] rounded-full " alt="" />
             </div>
             <div className="navbar-center hidden lg:flex">
-                <ul className="menu menu-horizontal p-0 text-white text-lg">
+                <ul className="menu menu-horizontal p-0 text-black text-lg">
                     {menu}
                 </ul>
 
@@ -67,6 +67,8 @@ const HeaderNavbar = () => {
             </label>
 
         </div>
+       
+                   
     );
 };
 

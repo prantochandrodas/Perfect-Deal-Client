@@ -13,7 +13,7 @@ const CheckoutForm = ({booking}) => {
 
   useEffect(() => {
     // Create PaymentIntent as soon as the page loads
-    fetch("http://localhost:5000/create-payment-intent", {
+    fetch("https://perfect-deal-server.vercel.app/create-payment-intent", {
       method: "POST",
       headers: {
          "Content-Type": "application/json",
@@ -75,7 +75,7 @@ setProcessing(true);
           order_id,
           bookingId:_id
         }
-        fetch('http://localhost:5000/payments',{
+        fetch('https://perfect-deal-server.vercel.app/payments',{
           method:'POST',
           headers:{
             'content-type':'application/json',

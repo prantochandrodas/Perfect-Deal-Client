@@ -1,0 +1,14 @@
+.navbarColor {
+    background-color: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+    z-index: 2;
+    position: sticky!important;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+.active {
+    background-color: #ffffff;
+    color: #1a73e8!important;
+    border-bottom: 2px solid #1a73e8;
+}

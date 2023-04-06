@@ -5,12 +5,12 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: process.env.REACT_APP_apiKey,
-  authDomain: process.env.REACT_APP_authDomain,
-  projectId: process.env.REACT_APP_projectId,
-  storageBucket: process.env.REACT_APP_storageBucket,
-  messagingSenderId: process.env.REACT_APP_messagingSenderId,
-  appId: process.env.REACT_APP_appId,
+  apiKey: "AIzaSyC-HxM2XSQ-RF-udulPWTeAji49qYtrO7c",
+  authDomain: "perfect-deal-3083b.firebaseapp.com",
+  projectId: "perfect-deal-3083b",
+  storageBucket: "perfect-deal-3083b.appspot.com",
+  messagingSenderId: "404989755204",
+  appId: "1:404989755204:web:acb33b9497e47a3da66111"
 };
 
 // Initialize Firebase

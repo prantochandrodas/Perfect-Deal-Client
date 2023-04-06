@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import img from '../../assets/img2.jpg'
 import { AuthContext } from '../../contexts/AuthProvider';
-import useToken from '../Hooks/useToken';
+import useToken from '../Hooks/UseToken';
 const Login = () => {
     const [loginError, setLoginError] = useState('')
     const [loginUserEmail, setLoginUserEmail] = useState('');
@@ -45,7 +45,7 @@ const Login = () => {
 
                 }
 
-                fetch(`http://localhost:5000/googleUser?email=${user?.email}&name=${user?.displayName}`, {
+                fetch(`https://perfect-deal-server.vercel.app/googleUser?email=${user?.email}&name=${user?.displayName}`, {
                     method: 'PUT',
 
 

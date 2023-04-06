@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import img from '../../assets/img2.jpg'
 import { AuthContext } from '../../contexts/AuthProvider';
-import useToken from '../Hooks/useToken';
+import useToken from '../Hooks/UseToken';
 const Signup = () => {
     const [signUpError,setSignUpError]=useState('');
     const imgHostKey = process.env.REACT_APP_imgbb_key;
@@ -66,7 +66,7 @@ const Signup = () => {
             email
 
         }
-        fetch('http://localhost:5000/users', {
+        fetch('https://perfect-deal-server.vercel.app/users', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
