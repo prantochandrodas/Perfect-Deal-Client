@@ -6,6 +6,7 @@ import HomeBanner from '../HomeBanner/HomeBanner';
 import HomeCategory from '../HomeCategory/HomeCategory';
 import Advertise from './Advertise/Advertise';
 import SocilMedia from './SocialMedia/SocilMedia';
+import Contact from '../../Contact/Contact';
 
 const Home = () => {
     
@@ -39,7 +40,7 @@ const Home = () => {
                 </div>
             </div>
             <AboutUs></AboutUs>
-            <SocilMedia></SocilMedia>
+            <Contact></Contact>
         </div>
     );
 };
