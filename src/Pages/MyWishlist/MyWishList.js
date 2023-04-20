@@ -21,14 +21,13 @@ const MyWishList = () => {
             return data;
         }
     });
-    console.log(wishLists.length);
     if (isLoading) {
         return <Spinner></Spinner>
     }
 
     return (
         <div>
-            <div className='grid lg:grid-cols-2 p-10 gap-5 md:grid-cols-2 mt-10'>
+            <div className='grid lg:grid-cols-2 p-2 gap-5 md:grid-cols-2 mt-10'>
                 {
               wishLists &&  wishLists.map(wishlist => <MyWish
                         key={wishlist._id}

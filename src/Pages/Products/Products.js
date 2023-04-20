@@ -19,7 +19,7 @@ const Products = () => {
         // bg-zinc-200 p-2
         <div className='flex '>
             <ProductCategoryDrawer></ProductCategoryDrawer>
-            <div className='grid lg:grid-cols-2 p-5 md:grid-cols-2 gap-5 lg:p-20 md:p-10 '>
+            <div className='grid lg:grid-cols-2 p-5 md:grid-cols-2 gap-5 lg:p-10 md:p-10 '>
                 {
                     products && products.map(product => <Product
                         key={product._id}

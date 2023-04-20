@@ -10,11 +10,7 @@ const MyOrder = () => {
     const { data: orders = [], isLoading } = useQuery({
         queryKey: ['orders'],
         queryFn: async () => {
-            const res = await fetch(url,{
-                headers:{
-                    authorization:`bearar ${localStorage.getItem('accessToken')}`
-                }
-            });
+            const res = await fetch(url);
             const data = await res.json();
             return data;
         }
@@ -23,7 +19,7 @@ const MyOrder = () => {
     if (isLoading ) {
         return <Spinner></Spinner>
     }
-   
+   console.log(orders);
     return (
         <div>
             <div className="overflow-x-auto">
@@ -42,7 +38,7 @@ const MyOrder = () => {
                       
                       {
 
-                     orders &&  orders.map((order,i)=>  <tr>
+                     orders &&  orders?.map((order,i)=>  <tr>
                             <th>{i+1}</th>
                             <td>{order.product_name}</td>
                             <td><img src={order.picture} className="w-[60px]" alt="" /></td>

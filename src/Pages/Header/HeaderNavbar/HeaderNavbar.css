@@ -24,6 +24,10 @@
     background-color: #454545;
     border: 1px solid #FFA559;
 }
+.btn-color{
+    background-color: #FFA559;
+    color:#ffffff ;
+}
 .nav-border {
     border-bottom: 1px solid #FFA559;
 }

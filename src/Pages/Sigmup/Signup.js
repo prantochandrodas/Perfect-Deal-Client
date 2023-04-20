@@ -5,9 +5,15 @@ import { Link, useNavigate } from 'react-router-dom';
 import img from '../../assets/img2.jpg'
 import { AuthContext } from '../../contexts/AuthProvider';
 import useToken from '../Hooks/UseToken';
+import login from '../../dlf10_W7sz3YEElT.json';
+import Lottie from 'react-lottie';
+import Spinner from '../../Spinner/Spinner';
 const Signup = () => {
+    const [loading,SetLoading]=useState(false);
+    const {user}=useContext(AuthContext);
     const [signUpError,setSignUpError]=useState('');
     const imgHostKey = process.env.REACT_APP_imgbb_key;
+    console.log(imgHostKey);
     const navigate = useNavigate();
     const { createUser, updateUser } = useContext(AuthContext);
 
@@ -20,6 +26,7 @@ const Signup = () => {
         navigate('/');
     }
     const handelSignUp = data => {
+        SetLoading(true);
         setSignUpError('');
         createUser(data.email, data.password, data.role)
             .then(result => {
@@ -35,15 +42,16 @@ const Signup = () => {
                 })
                     .then(res => res.json())
                     .then(imgData => {
+                      console.log(imgData)
                         if (imgData.success) {
+
                             const userInfo = {
                                 displayName: data.name,
-                                photoURL: imgData.data.url,
+                                photoURL: imgData.data.url, 
                             }
                             updateUser(userInfo)
                                 .then(() => {
                                     saveUser(data.name, data.role, data.email);
-
                                 })
                                 .catch(error => console.log(error))
                       
@@ -56,7 +64,7 @@ const Signup = () => {
 
 
             })
-        // console.log(data)
+  
     }
 
     const saveUser = (name, role, email) => {
@@ -75,18 +83,33 @@ const Signup = () => {
         })
             .then(res => res.json())
             .then(data => {
+                navigate('/');
                 setCreateUserEmail(email);
             })
+            .catch(err=>console.log(err))
     }
 
-
-
+    const defaultOptions = {
+        loop: true,
+        autoplay: true,
+        animationData:login ,
+        rendererSettings: {
+            preserveAspectRatio: 'xMidYMid slice',
+        }
+    };
+    if(loading){
+        return <Spinner></Spinner>
+    }
     return (
         <div className="hero min-h-screen">
-            <div className="hero-content flex-col lg:flex-row-reverse">
+            <div className="hero-content flex-col lg:flex-row-reverse justify-between">
                 <div className="text-center lg:text-left hidden lg:block">
 
-                    <img src={img} className="w-9/12" alt="" />
+                         <div>
+                            <Lottie options={defaultOptions}
+                                height={600}
+                                width={500} />
+                        </div>
                 </div>
                 <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
                     <h1 className="text-5xl font-bold text-center my-5">Sign Up</h1>

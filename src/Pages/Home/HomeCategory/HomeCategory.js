@@ -1,7 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import AllCategory from './AllCategory';
-
+import './AllCategory.css'
+import Spinner from '../../../Spinner/Spinner';
 const HomeCategory = () => {
   
   const { data: productCategorys = [], isLoading } = useQuery({
@@ -14,12 +15,12 @@ const HomeCategory = () => {
   });
 
   if (isLoading) {
-    return <p className='text-xl'>Loading...</p>
+    return <Spinner></Spinner>
   }
   return (
-    <div>
-    <h1 className='my-5 text-5xl font-bold text-center'>Product Category</h1>
-      <div className='grid lg:grid-cols-3 md:grid-cols-2 gap-5 lg:p-10 p-10 md:p-10'>
+    <div className='bg-white pt-4'>
+    <h1 className='my-2 text-3xl font-bold text-center text-color'>Product Category</h1>
+      <div className='grid lg:grid-cols-3 md:grid-cols-2 gap-5 lg:p-10 p-2 md:p-10'>
         {
           productCategorys.map(productCategory => <AllCategory
             key={productCategory._id}

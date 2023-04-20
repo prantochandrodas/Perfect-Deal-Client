@@ -44,8 +44,10 @@ const Product = ({ product, setBookProduct }) => {
 
 
     const handelWishlist = (product) => {
+        console.log(product._id);
         const wishList = {
             category_name: '',
+            product_id:product._id,
             category_id: product.category_id,
             picture: product.picture,
             product_name: product.product_name,
@@ -64,7 +66,6 @@ const Product = ({ product, setBookProduct }) => {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
-                authorization: `bearar ${localStorage.getItem('accessToken')}`
             },
             body: JSON.stringify(wishList)
 
@@ -72,7 +73,7 @@ const Product = ({ product, setBookProduct }) => {
             .then(res => res.json())
             .then(result => {
                 if (result.acknowledged) {
-                    toast.success('wish added successfull', {
+                    toast.success('Sucess fully Added', {
                         position: "top-center",
                         autoClose: 5000,
                         hideProgressBar: false,
@@ -82,8 +83,19 @@ const Product = ({ product, setBookProduct }) => {
                         progress: undefined,
                         theme: "light",
                     });
-
                 }
+               if(result===false){
+                toast.info('Already Added', {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
+               }
 
             })
     }
@@ -94,14 +106,13 @@ const Product = ({ product, setBookProduct }) => {
     return (
         <div>
           {
-              <div className="card lg:w-[350px]   md:mx-auto  shadow-xl">
+              <div className="card lg:w-[390px]   md:mx-auto  shadow-xl">
                 <div>
                     <h2 className='text-3xl my-4 text-center'>{product_name}</h2>
                 </div>
                 <figure><img src={picture} alt="Shoes" className='md:h-[300px] h-[250px] lg:h-[300px] p-3' /></figure>
                 <div className="card-body">
                     <div className='flex items-center'>
-                        <h2 className="card-title mr-2 " >Seller: {saller_name}</h2>
                         {
                         allSellers &&  allSellers.map(allSeller =>
                                 allSeller?.email === email && allSeller?.verified === "verified" ?
@@ -116,17 +127,17 @@ const Product = ({ product, setBookProduct }) => {
                         }
                     </div>
                     <p className='font-bold'>Location: <small>{location}</small></p>
-                    <p className='font-bold'>Resale Price:${resale_price} / Original Price:{original_price}</p>
+                    <p className='font-bold'>Resale Price:${resale_price}</p>
                     <p className='font-bold'>Year of use : {year_of_use}</p>
                     <p className='font-bold'>Condition : {condition}</p>
 
-                    <div className="card-actions justify-end">
+                    <div className="card-actions">
 
                         {paid && paid === true ?
 
                             <button className='btn btn-primary' disabled>Sold</button> :
-                            <label htmlFor="booking-modal" onClick={() => setBookProduct(product)} className="btn btn-primary">Book Product</label>}
-                        <button onClick={() => handelWishlist(product)} className='btn btn-success'>Add In Wishlist</button>
+                            <label htmlFor="booking-modal" onClick={() => setBookProduct(product)} className="btn btn-primary rounded-3xl">Book Product</label>}
+                        <button onClick={() => handelWishlist(product)} className='btn btn-success rounded-3xl'>Add In Wishlist</button>
                     </div>
                 </div>
             </div>

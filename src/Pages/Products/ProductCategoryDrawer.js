@@ -19,7 +19,7 @@ const ProductCategoryDrawer = () => {
   }
     return (
         <div className='hidden lg:block md:hidden'>
-            <div className="drawer drawer-mobile">
+            <div className="drawer drawer-mobile border border-slate-300 h-full">
                 <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
                 <div className="drawer-content flex flex-col items-center justify-center">
 

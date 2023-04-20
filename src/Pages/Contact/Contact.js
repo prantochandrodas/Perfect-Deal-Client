@@ -1,105 +1,85 @@
-import React from 'react';
+import React, { useRef } from 'react';
+import image from '../../assets/doodle.svg';
 
+import emailjs from '@emailjs/browser';
+import { ToastContainer, toast } from 'react-toastify';
+import Location from '../Location/Location';
+import ncontact from '../../contact.json';
+import Lottie from 'react-lottie';
 const Contact = () => {
+    const form = useRef();
 
-    const servicesItems = ["Mobile development", "UI/UX Design", "web development", "SEO"]
-
+    const sendEmail = (e) => {
+      e.preventDefault();
+  
+      emailjs.sendForm('service_3umy9mj', 'template_e6of1b5', form.current, 'FqD8ZBIFTHtTxuI_O')
+        .then((result) => {
+            console.log(result.text);
+            toast.success('Sucessfully sent', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                });
+        }, (error) => {
+            console.log(error.text);
+            toast.error(error.text, {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                });
+        });
+    };
+    const defaultOptions = {
+        loop: true,
+        autoplay: true,
+        animationData:ncontact ,
+        rendererSettings: {
+            preserveAspectRatio: 'xMidYMid slice',
+        }
+    };
     return (
-        <main className="flex overflow-hidden p-10">
-            <div className="flex-1 hidden lg:block">
-                <img src="https://res.cloudinary.com/floatui/image/upload/v1670701901/scott-webb-NQymDb5XqC4-unsplash_ezrolm.jpg" className="w-full h-screen object-cover" />
-            </div>
-            <div className="py-12 flex-1 lg:flex lg:justify-center lg:h-screen lg:overflow-auto">
-                <div className="max-w-lg flex-1 mx-auto px-4 text-gray-600">
-                    <div>
-                        <h3 className="text-gray-800 text-3xl font-semibold sm:text-4xl">
-                            Get in touch
-                        </h3>
-                        <p className="mt-3">
-                            We’d love to hear from you! Please fill out the form bellow.
-                        </p>
+        <div>
+            <Location></Location>
+            <div  id='Contact' className="grid max-w-screen-xl grid-cols-1 gap-8 px-8 py-16 mx-auto md:grid-cols-2 md:px-12 lg:px-16 xl:px-32 bg-gray-800 text-gray-100">
+                <div data-aos="zoom-in" data-aos-duration="1000" className="flex flex-col justify-between">
+                    <div className="space-y-2">
+                        <h2 className="text-4xl font-bold leading-tight lg:text-5xl">Let's talk!</h2>
+                        <div className="dark:text-gray-400">If you want to talk? send message.</div>
                     </div>
-                    <form
-                        onSubmit={(e) => e.preventDefault()}
-                        className="space-y-5 mt-12 lg:pb-12"
-                    >
-                        <div>
-                            <label className="font-medium">
-                                Full name
-                            </label>
-                            <input
-                                type="text"
-                                required
-                                className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-gray-800 shadow-sm rounded-lg"
-                            />
+                    <div>
+                            <Lottie options={defaultOptions}
+                                height={400}
+                                width={500} />
                         </div>
-                        <div>
-                            <label className="font-medium">
-                                Email
-                            </label>
-                            <input
-                                type="email"
-                                required
-                                className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-gray-800 shadow-sm rounded-lg"
-                            />
-                        </div>
-                        <div>
-                            <label className="font-medium">
-                                Phone number
-                            </label>
-                            <div className="relative mt-2">
-                                <div className="absolute inset-y-0 left-3 my-auto h-6 flex items-center border-r pr-2">
-                                    <select className="text-sm bg-transparent outline-none rounded-lg h-full">
-                                        <option>US</option>
-                                        <option>ES</option>
-                                        <option>MR</option>
-                                    </select>
-                                </div>
-                                <input
-                                    type="number"
-                                    placeholder="+1 (555) 000-000"
-                                    required
-                                    className="w-full pl-[4.5rem] pr-3 py-2 appearance-none bg-transparent outline-none border focus:border-gray-800 shadow-sm rounded-lg"
-                                />
-                            </div>
-                        </div>
-                        <div>
-                            <label className="font-medium">
-                                Services
-                            </label>
-                            <ul className="grid gap-y-2 gap-x-6 flex-wrap grid-cols-2 mt-3">
-                                {
-                                    servicesItems.map((item, idx) => (
-                                        <li key={idx} className="flex gap-x-3 text-sm">
-                                            <div>
-                                                <input id={`service-${idx}`} type="checkbox" className="checkbox-item peer hidden" />
-                                                <label
-                                                    htmlFor={`service-${idx}`}
-                                                    className="relative flex w-5 h-5 bg-white peer-checked:bg-indigo-600 rounded-md border ring-offset-2 ring-indigo-600 duration-150 peer-active:ring cursor-pointer after:absolute after:inset-x-0 after:top-[3px] after:m-auto after:w-1.5 after:h-2.5 after:border-r-2 after:border-b-2 after:border-white after:rotate-45"
-                                                >
-                                                </label>
-                                            </div>
-                                            <label htmlFor={`service-${idx}`} className="cursor-pointer">{item}</label>
-                                        </li>
-                                    ))
-                                }
-                            </ul>
-                        </div>
-                        <div>
-                            <label className="font-medium">
-                                Message
-                            </label>
-                            <textarea required className="w-full mt-2 h-36 px-3 py-2 resize-none appearance-none bg-transparent outline-none border focus:border-gray-800 shadow-sm rounded-lg"></textarea>
-                        </div>
-                        <button
-                            className="w-full px-4 py-2 text-white font-medium bg-gray-800 hover:bg-gray-700 active:bg-gray-900 rounded-lg duration-150"
-                        >
-                            Submit
-                        </button>
-                    </form>
                 </div>
+                <form data-aos="zoom-in" data-aos-duration="1000" novalidate="" className="space-y-6 ng-untouched ng-pristine ng-valid" ref={form} onSubmit={sendEmail}>
+                    <div>
+                        <label for="name" className="text-sm">Full name</label>
+                        <input name='full_name' id="name" type="text" placeholder="" className="w-full p-3 rounded bg-gray-800 border border-white" />
+                    </div>
+                    <div>
+                        <label for="email" className="text-sm">Email</label>
+                        <input name='email' id="email" type="email" className="w-full p-3 rounded bg-gray-800 border border-white" />
+                    </div>
+                    <div>
+                        <label for="message" className="text-sm">Message</label>
+                        <textarea name="message"  id="message" rows="3" className="w-full p-3 rounded border border-white bg-gray-800"></textarea>
+                    </div>
+                    <button type="submit" className="w-full p-3 text-sm font-bold tracking-wide uppercase rounded bg-violet-400 dark:text-gray-900">Send Message</button>
+                </form>
             </div>
-        </main>
+            <ToastContainer></ToastContainer>
+        </div>
     );
 };
 

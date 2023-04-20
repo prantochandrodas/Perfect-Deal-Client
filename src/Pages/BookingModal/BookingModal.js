@@ -6,7 +6,7 @@ const BookingModal = ({ bookProduct , setBookProduct}) => {
     const { user
     
     } = useContext(AuthContext);
-    console.log(bookProduct);
+    // console.log(bookProduct);
     const {
         picture,
         product_name,
@@ -22,7 +22,7 @@ const BookingModal = ({ bookProduct , setBookProduct}) => {
         const email = form.email.value;
         const phone = form.phone.value;
         const location = form.location.value;
-        console.log(name,email,phone,location);
+        // console.log(name,email,phone,location);
 
         const booking={
             order_id:_id,
@@ -59,6 +59,19 @@ const BookingModal = ({ bookProduct , setBookProduct}) => {
                     });
                 setBookProduct(null);
             }
+            if(data===false){
+                toast.info('Already Added', {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
+                setBookProduct(null);
+               }
         })
     }
 
