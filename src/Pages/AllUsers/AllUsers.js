@@ -7,7 +7,7 @@ const AllUsers = () => {
     const { data: allusers = [], isLoading,refetch } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
-            const res = await fetch('https://perfect-deal-server.vercel.app/allUsers',{
+            const res = await fetch('http://localhost:5000/allUsers',{
                 headers:{
                     authorization:`bearar ${localStorage.getItem('accessToken')}`
                 }
@@ -19,7 +19,7 @@ const AllUsers = () => {
 
     // delete a user
     const handelDelete=(id)=>{
-        fetch(`https://perfect-deal-server.vercel.app/users/${id}`,{
+        fetch(`http://localhost:5000/users/${id}`,{
             method:'DELETE',
             headers:{
                 authorization:`bearar ${localStorage.getItem('accessToken')}`

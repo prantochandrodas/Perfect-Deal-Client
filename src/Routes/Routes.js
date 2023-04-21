@@ -42,7 +42,7 @@ const router=createBrowserRouter([
             {
                 path:'/products/:id',
                 element:<PrivetRoute><Products></Products></PrivetRoute>,
-                 loader:({params})=>fetch(`https://perfect-deal-server.vercel.app/products/${params.id}`)
+                 loader:({params})=>fetch(`http://localhost:5000/products/${params.id}`)
             },
             
             {
@@ -74,24 +74,24 @@ const router=createBrowserRouter([
             },
             {
                 path:'/dashBoard/allUsers',
-                element:<AdminRoute><AllUsers></AllUsers></AdminRoute>
+                element:<AllUsers></AllUsers>
             },
             {
                 path:'/dashBoard/allSellers',
-                element:<AdminRoute><AllSellers></AllSellers></AdminRoute>
+                element:<AllSellers></AllSellers>
             },
             {
                 path:'/dashBoard/addProduct',
-                element:<SellerRoute><AddProduct></AddProduct></SellerRoute>
+                element:<AddProduct></AddProduct>
             },
             {
                 path:'/dashBoard/myproducts',
-                element:<SellerRoute><MyProducts></MyProducts></SellerRoute>
+                element:<MyProducts></MyProducts>
             },
             {
                 path:'/dashBoard/payment/:id',
                 element:<Payment></Payment>,
-                 loader:({params})=>fetch(`https://perfect-deal-server.vercel.app/bookings/${params.id}`)
+                 loader:({params})=>fetch(`http://localhost:5000/bookings/${params.id}`)
             }
         ]
     }

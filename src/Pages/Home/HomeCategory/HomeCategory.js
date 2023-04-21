@@ -8,7 +8,7 @@ const HomeCategory = () => {
   const { data: productCategorys = [], isLoading } = useQuery({
     queryKey: ['productCategory'],
     queryFn: async () => {
-      const res = fetch('https://perfect-deal-server.vercel.app/productCategorys');
+      const res = fetch('http://localhost:5000/productCategorys');
       const data = (await res).json();
       return data;
     }
@@ -19,7 +19,7 @@ const HomeCategory = () => {
   }
   return (
     <div className='bg-white pt-4'>
-    <h1 className='my-2 text-3xl font-bold text-center text-color'>Product Category</h1>
+    <h1 className='my-2 text-3xl font-semibold text-center'>Product Category</h1>
       <div className='grid lg:grid-cols-3 md:grid-cols-2 gap-5 lg:p-10 p-2 md:p-10'>
         {
           productCategorys.map(productCategory => <AllCategory

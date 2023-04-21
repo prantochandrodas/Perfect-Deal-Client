@@ -13,7 +13,7 @@ const Product = ({ product, setBookProduct }) => {
     const { data: allSellers = [], isLoading, refetch } = useQuery({
         queryKey: ['sellers'],
         queryFn: async () => {
-            const res = await fetch('https://perfect-deal-server.vercel.app/allSellers', {
+            const res = await fetch('http://localhost:5000/allSellers', {
                 headers: {
                     authorization: `bearar ${localStorage.getItem('accessToken')}`
                 }
@@ -62,7 +62,7 @@ const Product = ({ product, setBookProduct }) => {
             email: user?.email,
             paid: product.paid
         }
-        fetch('https://perfect-deal-server.vercel.app/wishlist', {
+        fetch('http://localhost:5000/wishlist', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',

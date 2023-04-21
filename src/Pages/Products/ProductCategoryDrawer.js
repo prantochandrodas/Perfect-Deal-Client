@@ -9,7 +9,7 @@ const ProductCategoryDrawer = () => {
     const { data: productCategorys = [], isLoading } = useQuery({
         queryKey: ['productCategory'],
         queryFn: async () => {
-            const res = fetch('https://perfect-deal-server.vercel.app/productCategorys');
+            const res = fetch('http://localhost:5000/productCategorys');
             const data = (await res).json();
             return data;
         }

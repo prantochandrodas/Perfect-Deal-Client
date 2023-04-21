@@ -36,7 +36,7 @@ const BookingModal = ({ bookProduct , setBookProduct}) => {
             resale_price,
             location
         }
-        fetch('https://perfect-deal-server.vercel.app/bookings',{
+        fetch('http://localhost:5000/bookings',{
             method:'POST',
             headers:{
                 'content-type':'application/json'

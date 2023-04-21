@@ -6,7 +6,7 @@ import Slider from "react-slick";
 const Advertise = ({ product }) => {
     
     const { paid, product_name, picture, resale_price, condition, posted_date } = product;
-     console.log(product);
+    //  console.log(product);
 
     return (
         <div>

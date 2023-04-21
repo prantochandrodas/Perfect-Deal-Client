@@ -24,7 +24,7 @@ const AllProduct = ({ data, setBookProduct }) => {
             email: user?.email,
             paid: product.paid
         }
-        fetch('https://perfect-deal-server.vercel.app/wishlist', {
+        fetch('http://localhost:5000/wishlist', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',

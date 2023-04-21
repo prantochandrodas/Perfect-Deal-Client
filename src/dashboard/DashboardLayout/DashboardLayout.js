@@ -9,10 +9,11 @@ import { useQuery } from '@tanstack/react-query';
 import Spinner from '../../Spinner/Spinner';
 import './DashboardLayout.css'
 const DashboardLayout = () => {
+    const [state,SetState]=useState(true);
     const { user } = useContext(AuthContext);
     const { data: getUser = [], isLoading, refetch } = useQuery({
         queryKey: ['getUser'],
-        queryFn: () => fetch(`https://perfect-deal-server.vercel.app/getUser?email=${user?.email}`)
+        queryFn: () => fetch(`http://localhost:5000/getUser?email=${user?.email}`)
             .then(res => res.json())
     });
     if (isLoading) {
@@ -36,29 +37,20 @@ const DashboardLayout = () => {
                         {
                             getUser?.role === "seller" ?
                                 <>
-                                    <li><NavLink to='/dashBoard/addProduct'>Add Product</NavLink></li>
-                                    <li><NavLink to='/dashBoard/myproducts'>My products</NavLink></li>
+                                    <li><NavLink to='/dashBoard/addProduct' className='font-medium border-b border-slate-300'>Add Product</NavLink></li>
+                                    <li><NavLink to='/dashBoard/myproducts' className='font-medium border-b border-slate-300'>My products</NavLink></li>
                                 </> :
                                 <></>
                         }
                         {
                             getUser?.role === "admin" ?
                                 <>
-                                    <li><NavLink to='/dashBoard/allusers'>All Users</NavLink></li>
-                                    <li><NavLink to='/dashBoard/allSellers'>All Seller</NavLink></li>
+                                    <li><NavLink to='/dashBoard/allusers' className='font-medium border-b border-slate-300'>All Users</NavLink></li>
+                                    <li><NavLink to='/dashBoard/allSellers' className='font-medium border-b border-slate-300'>All Seller</NavLink></li>
                                 </> :
                                 <></>
                         }
-                        {/* {isAdmin &&
-                           
-                        }
-                        {
-                            isSeller &&
-                            <>
-                                <li><NavLink to='/dashBoard/addProduct'>Add Product</NavLink></li>
-                                <li><NavLink to='/dashBoard/myproducts'>My products</NavLink></li>
-                            </>
-                        } */}
+                        
                     </ul>
                 </div>
             </div>

@@ -12,7 +12,7 @@ const MyProducts = () => {
     const { data: myproducts = [], isLoading, refetch } = useQuery({
         queryKey: ['myproducts'],
         queryFn: async () => {
-            const res = await fetch(`https://perfect-deal-server.vercel.app/myproducts?email=${user?.email}`, {
+            const res = await fetch(`http://localhost:5000/myproducts?email=${user?.email}`, {
                 headers: {
                     authorization: `bearar ${localStorage.getItem('accessToken')}`
                 }
@@ -26,7 +26,7 @@ const MyProducts = () => {
     // console.log(bookings);
 
     const handelDelete = (id) => {
-        fetch(`https://perfect-deal-server.vercel.app/myproducts/${id}`, {
+        fetch(`http://localhost:5000/myproducts/${id}`, {
             method: 'DELETE',
             headers: {
                 authorization: `bearar ${localStorage.getItem('accessToken')}`
@@ -62,7 +62,7 @@ const MyProducts = () => {
         //    resale_price:myproduct.resale_price
         // }
 
-        fetch(`https://perfect-deal-server.vercel.app/advertise/${id}`, {
+        fetch(`http://localhost:5000/advertise/${id}`, {
             method: 'PUT',
             headers: {
                 authorization: `bearar ${localStorage.getItem('accessToken')}`

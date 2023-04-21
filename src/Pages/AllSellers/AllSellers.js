@@ -1,15 +1,13 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import { toast } from 'react-toastify';
+import Spinner from '../../Spinner/Spinner';
 
 const AllSellers = () => {
     const { data: allSellers = [], isLoading, refetch } = useQuery({
-        queryKey: ['sellers'],
+        queryKey: ['allSellers'],
         queryFn: async () => {
-            const res = await fetch('https://perfect-deal-server.vercel.app/allSellers', {
-                headers: {
-                    authorization: `bearar ${localStorage.getItem('accessToken')}`
-                }
+            const res = await fetch('http://localhost:5000/allSellers', {
             });
             const data = await res.json();
             return data;
@@ -18,11 +16,9 @@ const AllSellers = () => {
 
     // delete a user
     const handelDelete = (id) => {
-        fetch(`https://perfect-deal-server.vercel.app/seller/${id}`, {
+        fetch(`http://localhost:5000/seller/${id}`, {
             method: 'DELETE',
-            headers: {
-                authorization: `bearar ${localStorage.getItem('accessToken')}`
-            }
+           
         })
             .then(res => res.json())
             .then(data => {
@@ -44,7 +40,7 @@ const AllSellers = () => {
             })
     }
     const handelVerified = (email) => {
-        fetch(`https://perfect-deal-server.vercel.app/allSellers/unverifyed/${email}`, {
+        fetch(`http://localhost:5000/allSellers/unverifyed/${email}`, {
             method: 'PUT',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -70,11 +66,8 @@ const AllSellers = () => {
 
 
     const handelUnVerified = (email) => {
-        fetch(`https://perfect-deal-server.vercel.app/allSellers/verified/${email}`, {
+        fetch(`http://localhost:5000/allSellers/verified/${email}`, {
             method: 'PUT',
-            headers: {
-                authorization: `bearer ${localStorage.getItem('accessToken')}`
-            }
         })
             .then(res => res.json())
             .then(data => {
@@ -96,7 +89,7 @@ const AllSellers = () => {
 console.log(allSellers);
 
     if (isLoading) {
-        return <p> Loading...</p>
+        return <Spinner></Spinner>
     }
     return (
         <div>
