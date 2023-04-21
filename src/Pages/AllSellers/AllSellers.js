@@ -7,7 +7,7 @@ const AllSellers = () => {
     const { data: allSellers = [], isLoading, refetch } = useQuery({
         queryKey: ['allSellers'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/allSellers', {
+            const res = await fetch('https://perfect-deal-server.vercel.app/allSellers', {
             });
             const data = await res.json();
             return data;
@@ -16,7 +16,7 @@ const AllSellers = () => {
 
     // delete a user
     const handelDelete = (id) => {
-        fetch(`http://localhost:5000/seller/${id}`, {
+        fetch(`https://perfect-deal-server.vercel.app/seller/${id}`, {
             method: 'DELETE',
            
         })
@@ -40,7 +40,7 @@ const AllSellers = () => {
             })
     }
     const handelVerified = (email) => {
-        fetch(`http://localhost:5000/allSellers/unverifyed/${email}`, {
+        fetch(`https://perfect-deal-server.vercel.app/allSellers/unverifyed/${email}`, {
             method: 'PUT',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -66,7 +66,7 @@ const AllSellers = () => {
 
 
     const handelUnVerified = (email) => {
-        fetch(`http://localhost:5000/allSellers/verified/${email}`, {
+        fetch(`https://perfect-deal-server.vercel.app/allSellers/verified/${email}`, {
             method: 'PUT',
         })
             .then(res => res.json())

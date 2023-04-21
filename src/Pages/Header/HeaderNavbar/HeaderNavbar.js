@@ -5,9 +5,16 @@ import logo from "../../../assets/logo.png"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { fa5, faUserAlt } from '@fortawesome/free-solid-svg-icons';
 import './HeaderNavbar.css'
+import { useQuery } from '@tanstack/react-query';
+import Spinner from '../../../Spinner/Spinner';
 const HeaderNavbar = () => {
+       const { user, logout } = useContext(AuthContext);
     const [state, setState] = useState(false)
-
+    const { data: getUser = [], isLoading, refetch } = useQuery({
+        queryKey: ['getUser'],
+        queryFn: () => fetch(`https://perfect-deal-server.vercel.app/getUser?email=${user?.email}`)
+            .then(res => res.json())
+    });
     // Replace javascript:void(0) path with your path
     const navigation = [
         { title: "Home", path: "/" },
@@ -18,7 +25,7 @@ const HeaderNavbar = () => {
 
     const isOpen = false;
 
-    const { user, logout } = useContext(AuthContext);
+ 
 
     const navigate = useNavigate();
     const handelLogout = () => {
@@ -27,7 +34,9 @@ const HeaderNavbar = () => {
                 navigate('/login')
             })
     }
-
+if(isLoading){
+    return <Spinner></Spinner>
+}
     return (
         <nav className="navbarColor z-30 w-full nav-border  md:border-0 md:static">
             <div className="items-center px-4 max-w-screen-xl mx-auto md:flex md:px-8">
@@ -68,14 +77,31 @@ const HeaderNavbar = () => {
                                             {item.title}
                                         </NavLink>
                                     </li>
+                                   
                                 )
                             })
+                        }
+                         {
+                            getUser?.role === "seller" ?
+                                <>
+                                    <li><NavLink to='/dashBoard/addProduct'>Add Product</NavLink></li>
+                                    <li><NavLink to='/dashBoard/myproducts'>My products</NavLink></li>
+                                </> :
+                                <></>
+                        }
+                        {
+                            getUser?.role === "admin" ?
+                                <>
+                                    <li><NavLink to='/dashBoard/allusers'>All Users</NavLink></li>
+                                    <li><NavLink to='/dashBoard/allSellers'>All Seller</NavLink></li>
+                                </> :
+                                <></>
                         }
                     </ul>
                 </div>
                 <div className={`md:inline-block ${state ? 'block' : 'hidden'}`} >
                     {user?.uid ?
-                        <div className='flex '>
+                        <div className='flex mt-4 lg:mt-0 mb-4 lg:mb-0'>
                             {
                                 user?.photoURL ?
                                     <div className="avatar online">
@@ -90,7 +116,7 @@ const HeaderNavbar = () => {
                                 class="inline-block rounded-full bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-[2px] hover:text-white focus:outline-none focus:ring active:text-opacity-75"
                             ><button class="block rounded-full bg-white px-4 py-2 text-sm font-medium hover:bg-transparent" onClick={handelLogout}>Logout</button></Link>
                         </div> :
-                        <div className='flex'>
+                        <div className='flex mt-4 lg:mt-0 mb-4 lg:mb-0'>
                             <Link to='/login'><a className="inline-block rounded-full   hover:text-white focus:outline-none focus:ring active:text-opacity-75 btn-color"><button className="block rounded-full  px-4 py-2  font-medium">Login</button></a></Link>
                             <Link to='/signup'><a
                                 className="inline-block rounded-full btn-bg-color p-[2px] hover:text-white focus:outline-none focus:ring active:text-opacity-75 ml-2"

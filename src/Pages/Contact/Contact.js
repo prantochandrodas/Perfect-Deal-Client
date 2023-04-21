@@ -58,8 +58,8 @@ const Contact = () => {
                     </div>
                     <div>
                             <Lottie options={defaultOptions}
-                                height={400}
-                                width={500} />
+                                
+                                className="lg:h-[400px] lg:w-[500px] h-[250px] w-[200px]" />
                         </div>
                 </div>
                 <form data-aos="zoom-in" data-aos-duration="1000" novalidate="" className="space-y-6 ng-untouched ng-pristine ng-valid" ref={form} onSubmit={sendEmail}>

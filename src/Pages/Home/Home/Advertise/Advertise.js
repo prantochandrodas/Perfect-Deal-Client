@@ -16,7 +16,7 @@ const Advertise = ({ product }) => {
                     No product found
                 </div>
                 :
-                <a href="#" class="group bg-black rounded-xl relative block lg:w-[300px] w-[220px] h-[250px]">
+                <a href="#" class="group bg-black rounded-xl relative block lg:w-[300px] w-[180px] h-[250px]">
                     <img
                         alt="Developer"
                         src={picture}

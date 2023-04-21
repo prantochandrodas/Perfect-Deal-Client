@@ -43,7 +43,7 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 setLoginUserEmail(user?.email);
-                fetch(`http://localhost:5000/googleUser?email=${user?.email}&name=${user?.displayName}`, {
+                fetch(`https://perfect-deal-server.vercel.app/googleUser?email=${user?.email}&name=${user?.displayName}`, {
                     method: 'PUT',
                 })
                     .then(res => res.json())

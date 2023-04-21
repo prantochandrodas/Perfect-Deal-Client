@@ -8,7 +8,7 @@ const AllProducts = () => {
     const { data: allProduct = [], isLoading } = useQuery({
         queryKey: ['allProduct'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/allProduct');
+            const res = await fetch('https://perfect-deal-server.vercel.app/allProduct');
             const data = await res.json();
             return data;
         }

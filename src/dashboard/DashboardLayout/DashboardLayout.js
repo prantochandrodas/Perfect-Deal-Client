@@ -13,7 +13,7 @@ const DashboardLayout = () => {
     const { user } = useContext(AuthContext);
     const { data: getUser = [], isLoading, refetch } = useQuery({
         queryKey: ['getUser'],
-        queryFn: () => fetch(`http://localhost:5000/getUser?email=${user?.email}`)
+        queryFn: () => fetch(`https://perfect-deal-server.vercel.app/getUser?email=${user?.email}`)
             .then(res => res.json())
     });
     if (isLoading) {

@@ -10,49 +10,10 @@ import Contact from '../../Contact/Contact';
 import Slider from 'react-slick';
 import { AuthContext } from '../../../contexts/AuthProvider';
 
+
 const Home = () => {
   const { user } = useContext(AuthContext);
-  // autoplay: true,
-  // speed: 2000,
-  // autoplaySpeed: 3000,
-  console.log(user);
-  // var settings = {
-  //   dots: true,
-  //   infinite: false,
-  //   speed: 500,
-  //   slidesToShow: 3,
-  //   slidesToScroll: 2,
-  //   initialSlide: 0,
-  //   autoplay: true,
-  // speed: 2000,
-  // autoplaySpeed: 3000,
-  //   responsive: [
-  //     {
-  //       breakpoint: 1024,
-  //       settings: {
-  //         slidesToShow: 3,
-  //         slidesToScroll: 3,
-  //         infinite: true,
-  //         dots: true
-  //       }
-  //     },
-  //     {
-  //       breakpoint: 600,
-  //       settings: {
-  //         slidesToShow: 2,
-  //         slidesToScroll: 2,
-  //         initialSlide: 2
-  //       }
-  //     },
-  //     {
-  //       breakpoint: 480,
-  //       settings: {
-  //         slidesToShow: 1,
-  //         slidesToScroll: 1
-  //       }
-  //     }
-  //   ]
-  // };
+ 
   function SampleNextArrow(props) {
     const { className, style, onClick } = props;
     return (
@@ -117,7 +78,7 @@ const Home = () => {
   const { data: products = [], isLoading, refetch } = useQuery({
     queryKey: ['products'],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/allProduct/advetrise`, {
+      const res = await fetch(`https://perfect-deal-server.vercel.app/allProduct/advetrise`, {
 
       });
       const data = await res.json();
@@ -135,7 +96,7 @@ const Home = () => {
       <HomeCategory></HomeCategory>
       <div>
         <h1 className='text-4xl text-center text-black'>Advertisment</h1>
-        <div className='lg:p-20 p-2'>
+        <div className='lg:p-20 p-2 w-[90%] mx-auto lg:w-full'>
           <Slider {...settings}>
             {
               products && products.map(product => <Advertise
@@ -146,8 +107,8 @@ const Home = () => {
           </Slider>
         </div>
       </div>
-      <Contact></Contact>
-
+    
+      <Contact></Contact> 
     </div>
   );
 };
