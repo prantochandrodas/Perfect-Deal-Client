@@ -7,6 +7,7 @@ import { useQuery } from '@tanstack/react-query';
 import { AuthContext } from '../../contexts/AuthProvider';
 import { toast } from 'react-toastify';
 import Spinner from '../../Spinner/Spinner';
+import { IconName, AiOutlineHeart } from "react-icons/ai";
 const Product = ({ product, setBookProduct }) => {
 
     const { user } = useContext(AuthContext);
@@ -99,49 +100,102 @@ const Product = ({ product, setBookProduct }) => {
 
             })
     }
+    const callerror = () => {
 
+        toast.error('Have to login ', {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+        });
+    }
     if(isLoading){
         return <Spinner></Spinner>
     }
     return (
-        <div>
-          {
-              <div className="card lg:w-[390px]   md:mx-auto  shadow-xl">
-                <div>
-                    <h2 className='text-3xl my-4 text-center'>{product_name}</h2>
-                </div>
-                <figure><img src={picture} alt="Shoes" className='md:h-[300px] h-[250px] lg:h-[300px] p-3' /></figure>
-                <div className="card-body">
-                    <div className='flex items-center'>
+        // <div>
+          
+        //       <div className="card lg:w-[390px]   md:mx-auto  shadow-xl">
+        //         <div>
+        //             <h2 className='text-3xl my-4 text-center'>{product_name}</h2>
+        //         </div>
+        //         <figure><img src={picture} alt="Shoes" className='md:h-[300px] h-[250px] lg:h-[300px] p-3' /></figure>
+        //         <div className="card-body">
+        //             <div className='flex items-center'>
+        //                 {
+        //                 allSellers &&  allSellers.map(allSeller =>
+        //                         allSeller?.email === email && allSeller?.verified === "verified" ?
+        //                             <div>
+        //                                 <FontAwesomeIcon icon={faCheckCircle}></FontAwesomeIcon>
+        //                             </div> :
+        //                             <div>
+
+        //                             </div>)
+
+
+        //                 }
+        //             </div>
+        //             <p className='font-bold'>Location: <small>{location}</small></p>
+        //             <p className='font-bold'>Resale Price:${resale_price}</p>
+        //             <p className='font-bold'>Year of use : {year_of_use}</p>
+        //             <p className='font-bold'>Condition : {condition}</p>
+
+        //             <div className="card-actions">
+
+        //                 {paid && paid === true ?
+
+        //                     <button className='btn btn-primary' disabled>Sold</button> :
+        //                     <label htmlFor="booking-modal" onClick={() => setBookProduct(product)} className="btn btn-primary rounded-3xl">Book Product</label>}
+        //                 <button onClick={() => handelWishlist(product)} className='btn btn-success rounded-3xl'>Add In Wishlist</button>
+        //             </div>
+        //         </div>
+        //     </div>
+          
+        // </div>
+        <div class="block rounded-lg bg-white drop-shadow-lg ease-in duration-300 hover:drop-shadow-2xl shadow-indigo-100 lg:w-[380px]">
+            <img
+                alt="Home"
+                src={picture}
+                class="h-[250px] w-full rounded-md object-cover"
+            />
+
+            <div class="mt-2 p-4">
+                <dl>
+                    <div>
+                        <p className='text-black text-2xl font-semibold'>{product_name}</p>
+                    </div>
+                    <div>
+                        <p className='text-black font-medium'>Price: {resale_price}</p>
+                    </div>
+                    <p className='font-semibold'>Location: <small>{location}</small></p>
+                    <p className='font-semibold'>Resale Price:${resale_price}</p>
+
+                    <p className='font-semibold'>status : {product?.paid == true ? 'sold' : 'available'}</p>
+                    {/* <div className="card-actions justify-end">
+                     <Link to={`/products/${category_id}`}> <button  className="btn btn-primary rounded-3xl">See All</button></Link>
+                  </div> */}
+                </dl>
+                <dl className='py-4 flex justify-between'>
+                    <div className="tooltip" data-tip="Book ">
                         {
-                        allSellers &&  allSellers.map(allSeller =>
-                                allSeller?.email === email && allSeller?.verified === "verified" ?
-                                    <div>
-                                        <FontAwesomeIcon icon={faCheckCircle}></FontAwesomeIcon>
-                                    </div> :
-                                    <div>
-
-                                    </div>)
-
-
+                            product.paid == true ? <label htmlFor="booking-modal" onClick={() => setBookProduct(product)} className="btn btn-disabled rounded btn-sm ">Book Now</label> : user?.email ? <label htmlFor="booking-modal" onClick={() => setBookProduct(product)} className="relative font-medium text-indigo-600 before:absolute before:-bottom-1 before:h-0.5 before:w-full before:origin-left before:scale-x-0 before:bg-indigo-600 before:transition hover:before:scale-100">Book Now</label> : <label htmlFor="booking-modal" onClick={callerror} className="relative font-medium text-indigo-600 before:absolute before:-bottom-1 before:h-0.5 before:w-full before:origin-left before:scale-x-0 before:bg-indigo-600 before:transition hover:before:scale-100">Book Now</label>
                         }
                     </div>
-                    <p className='font-bold'>Location: <small>{location}</small></p>
-                    <p className='font-bold'>Resale Price:${resale_price}</p>
-                    <p className='font-bold'>Year of use : {year_of_use}</p>
-                    <p className='font-bold'>Condition : {condition}</p>
+                    {
+                        user?.email ? <div className="tooltip" data-tip="Add Wishlist">
+                            <button onClick={() => handelWishlist(product)} className='relative text-2xl '><AiOutlineHeart></AiOutlineHeart></button>
+                        </div> : <div className="tooltip" data-tip="Add Wishlist">
+                            <button onClick={callerror} className='relative text-2xl '><AiOutlineHeart></AiOutlineHeart></button>
+                        </div>
+                    }
 
-                    <div className="card-actions">
+                </dl>
 
-                        {paid && paid === true ?
-
-                            <button className='btn btn-primary' disabled>Sold</button> :
-                            <label htmlFor="booking-modal" onClick={() => setBookProduct(product)} className="btn btn-primary rounded-3xl">Book Product</label>}
-                        <button onClick={() => handelWishlist(product)} className='btn btn-success rounded-3xl'>Add In Wishlist</button>
-                    </div>
-                </div>
             </div>
-          }
         </div>
     );
 };

@@ -18,9 +18,9 @@ const HomeCategory = () => {
     return <Spinner></Spinner>
   }
   return (
-    <div className='bg-white pt-4'>
+    <div className='pt-4'>
     <h1 className='my-2 text-3xl font-semibold text-center'>Product Category</h1>
-      <div className='grid lg:grid-cols-3 md:grid-cols-2 gap-5 lg:p-10 p-2 md:p-10'>
+      <div className='w-[90%] lg:w-full mx-auto grid lg:grid-cols-3 md:grid-cols-2 gap-5 lg:p-10 p-2 md:p-10'>
         {
           productCategorys.map(productCategory => <AllCategory
             key={productCategory._id}

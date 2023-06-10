@@ -1,5 +1,8 @@
 .navbarColor {
-    background-color: #454545;
+    /* background-color: #454545; */
+    /* background: linear-gradient(to right, #454545, hwb(0 58% 38%),#454545);
+     */
+    background: linear-gradient(to left, #C06C84, #6C5B7B, #355C7D); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */   
     border-bottom: 1px solid #e5e7eb;
     z-index: 2;
     position: sticky!important;
@@ -9,25 +12,25 @@
 }
 .active {
     background-color: inherit;
-    color: #FFA559!important;
+    color: #ffffff!important;
     padding-bottom: 10px;
-    border-bottom: 2px solid #F45050;
+    border-bottom: 2px solid #ffffff;
     transition: 0.6s;
 }
-.text-color {
-    color: #FFA559;
+.navtext-color {
+    color: #ffffff;
 }
 .text-border{
     border: 1px solid #FFA559;
 }
 .btn-bg-color{
-    background-color: #454545;
-    border: 1px solid #FFA559;
+    background:  linear-gradient(to left, #355C7D, #6C5B7B, #355C7D);
+    border: 1px solid #ffffff;
 }
 .btn-color{
-    background-color: #FFA559;
+   background:  linear-gradient(to left, #355C7D, #6C5B7B, #355C7D);
     color:#ffffff ;
 }
 .nav-border {
-    border-bottom: 1px solid #FFA559;
+    border-bottom: 1px solid #ffffff;
 }

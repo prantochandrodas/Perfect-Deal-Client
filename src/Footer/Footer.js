@@ -115,20 +115,16 @@ const Footer = () => {
                     <div className="mt-6 sm:mt-0">
                         <ul className="flex items-center space-x-4">
                             <li className="pl-2 flex items-center justify-center">
-                                <img src={icon1} className='w-10' alt="" />
-
-
+                                <a href="https://www.facebook.com/pranto.chandrodas.33" target='_blank'><img src={icon1} className='w-10' alt="" /></a>
                             </li>
 
                             <li className="pl-2 flex items-center justify-center">
-                                <img src={icon2} className='w-10' alt="" />
+                                <a href="https://github.com/prantochandrodas" target='_blank'><img src={icon2} className='w-10' alt="" /></a>
                             </li>
 
                             <li className="pl-2 flex items-center justify-center">
-                                <img src={icon3} className='w-10' alt="" />
+                                <a href="https://www.linkedin.com/in/pranto-das08/" target='_blank'><img src={icon3} className='w-10' alt="" /></a>
                             </li>
-
-
                         </ul>
                     </div>
                 </div>

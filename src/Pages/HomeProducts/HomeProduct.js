@@ -2,8 +2,8 @@ import React, { useContext } from 'react';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../../contexts/AuthProvider';
 import { IconName, AiOutlineHeart } from "react-icons/ai";
-const AllProduct = ({ data, setBookProduct }) => {
-    console.log(data);
+import { Link } from 'react-router-dom';
+const HomeProduct = ({ data, setBookProduct }) => {
     const { product_name, picture, resale_price, location, condition, year_of_use, original_price } = data;
     const { user } = useContext(AuthContext);
     const handelWishlist = (product) => {
@@ -62,8 +62,9 @@ const AllProduct = ({ data, setBookProduct }) => {
 
             })
     }
-    const callerror = () => {
 
+   const callerror=()=>{
+   
         toast.error('Have to login ', {
             position: "top-center",
             autoClose: 5000,
@@ -74,54 +75,50 @@ const AllProduct = ({ data, setBookProduct }) => {
             progress: undefined,
             theme: "light",
         });
-    }
+   }
     return (
-        <div class="block rounded-lg bg-white drop-shadow-lg ease-in duration-300 hover:drop-shadow-2xl shadow-indigo-100 lg:w-[380px]">
-            <img
-                alt="Home"
-                src={picture}
-                class="h-[250px] w-full rounded-md object-cover"
-            />
+        <div>
+            <div class="block rounded-lg bg-white drop-shadow-lg ease-in duration-300 hover:drop-shadow-2xl shadow-indigo-100 lg:w-[300px] w-[260px]">
+                <img
+                    alt="Home"
+                    src={picture}
+                    class="h-[250px] w-full rounded-md object-cover"
+                />
 
-            <div class="mt-2 p-4">
-                <dl>
-                    <div>
-                        <p className='text-black text-2xl font-semibold'>{product_name}</p>
-                    </div>
-                    <div>
-                        <p className='text-black font-medium'>Price: {data.resale_price}</p>
-                    </div>
-                    <p className='font-semibold'>Location: <small>{data.location}</small></p>
-                    <p className='font-semibold'>Resale Price:${data.resale_price}</p>
+                <div class="mt-2 p-4">
+                    <dl>
+                        <div>
+                            <p className='text-black text-2xl font-semibold'>{product_name}</p>
+                        </div>
+                       
+                        <p className='font-semibold'>Price:${data.resale_price}</p>
 
-                    <p className='font-semibold'>status : {data?.paid == true ? 'sold' : 'available'}</p>
-                    {/* <div className="card-actions justify-end">
+                        {/* <div className="card-actions justify-end">
                      <Link to={`/products/${category_id}`}> <button  className="btn btn-primary rounded-3xl">See All</button></Link>
                   </div> */}
-                </dl>
-                <dl className='py-4 flex justify-between'>
-                    <div className="tooltip" data-tip="Book ">
-                        {
-                            data.paid == true ? <label htmlFor="booking-modal" onClick={() => setBookProduct(data)} className="btn btn-disabled rounded btn-sm ">Book Now</label> : user?.email ? <label htmlFor="booking-modal" onClick={() => setBookProduct(data)} className="relative font-medium text-indigo-600 before:absolute before:-bottom-1 before:h-0.5 before:w-full before:origin-left before:scale-x-0 before:bg-indigo-600 before:transition hover:before:scale-100">Book Now</label> : <label htmlFor="booking-modal" onClick={callerror} className="relative font-medium text-indigo-600 before:absolute before:-bottom-1 before:h-0.5 before:w-full before:origin-left before:scale-x-0 before:bg-indigo-600 before:transition hover:before:scale-100">Book Now</label>
-                        }
-                    </div>
-                    {
-                        user?.email ? <div className="tooltip" data-tip="Add Wishlist">
-                            <button onClick={() => handelWishlist(data)} className='relative text-2xl '><AiOutlineHeart></AiOutlineHeart></button>
-                        </div> : <div className="tooltip" data-tip="Add Wishlist">
-                            <button onClick={callerror} className='relative text-2xl '><AiOutlineHeart></AiOutlineHeart></button>
+                    </dl>
+                    <dl className='py-4 flex justify-between'>
+                        <div className="tooltip" data-tip="Book ">
+                            {
+                                user?.email ?  <label htmlFor="booking-modal" 
+                                
+                                onClick={() => setBookProduct(data)} className="relative font-medium text-indigo-600 before:absolute before:-bottom-1 before:h-0.5 before:w-full before:origin-left before:scale-x-0 before:bg-indigo-600 before:transition hover:before:scale-100">Book Now</label> : <label htmlFor="booking-modal" 
+                                
+                                onClick={callerror} className="relative font-medium text-indigo-600 before:absolute before:-bottom-1 before:h-0.5 before:w-full before:origin-left before:scale-x-0 before:bg-indigo-600 before:transition hover:before:scale-100">Book Now</label>
+                            }
                         </div>
-                    }
+                        <div className="tooltip" data-tip="Add Wishlist">
+                           {
+                                user?.email?<button onClick={() => handelWishlist(data)} className='relative text-2xl '><AiOutlineHeart></AiOutlineHeart></button>:<button  onClick={callerror} className='relative text-2xl '><AiOutlineHeart></AiOutlineHeart></button>
+                           }
+                            
+                        </div>
+                    </dl>
 
-                </dl>
-
+                </div>
             </div>
         </div>
     );
 };
 
-export default AllProduct;
-
-
-
-
+export default HomeProduct;

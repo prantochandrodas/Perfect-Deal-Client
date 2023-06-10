@@ -1,12 +1,14 @@
-.text-color {
-    color: #FFA559;
+.bannertext-color {
+    color: #ffffff;
 }
 .text-color2 {
-    color: #FF6000;
+    color: #ffffff;
 }
 .border-color{
-    border: 1px solid #FFA559;
+    border: 1px solid #ffffff;
 }
 .bg-Color {
-background-color: #454545;
+/* background-color: #454545; */
+background: linear-gradient(to left, #C06C84, #6C5B7B, #355C7D); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
 }

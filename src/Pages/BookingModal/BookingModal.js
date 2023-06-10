@@ -1,12 +1,16 @@
 import React, { useContext } from 'react';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../../contexts/AuthProvider';
+import { useNavigate } from 'react-router-dom';
 
 const BookingModal = ({ bookProduct , setBookProduct}) => {
     const { user
     
     } = useContext(AuthContext);
+
+    const navigate=useNavigate();
     // console.log(bookProduct);
+    console.log(user)
     const {
         picture,
         product_name,
@@ -24,55 +28,58 @@ const BookingModal = ({ bookProduct , setBookProduct}) => {
         const location = form.location.value;
         // console.log(name,email,phone,location);
 
-        const booking={
-            order_id:_id,
-
-            name,
-            email,
-            phone,
-            picture,
-            product_name,
-            verified,
-            resale_price,
-            location
-        }
-        fetch('https://perfect-deal-server.vercel.app/bookings',{
-            method:'POST',
-            headers:{
-                'content-type':'application/json'
-            },
-            body:JSON.stringify(booking)
-        })
-        .then(res=>res.json())
-        .then(data=>{
-            // console.log(data);
-            if (data.acknowledged) {
-                toast.success('Booking successfull', {
-                    position: "top-center",
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "light",
-                    });
-                setBookProduct(null);
+      
+       
+            const booking={
+                order_id:_id,
+    
+                name,
+                email,
+                phone,
+                picture,
+                product_name,
+                verified,
+                resale_price,
+                location
             }
-            if(data===false){
-                toast.info('Already Added', {
-                    position: "top-center",
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "light",
-                });
-                setBookProduct(null);
-               }
-        })
+            fetch('https://perfect-deal-server.vercel.app/bookings',{
+                method:'POST',
+                headers:{
+                    'content-type':'application/json'
+                },
+                body:JSON.stringify(booking)
+            })
+            .then(res=>res.json())
+            .then(data=>{
+                // console.log(data);
+                if (data.acknowledged) {
+                    toast.success('Booking successfull', {
+                        position: "top-center",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
+                        });
+                    setBookProduct(null);
+                }
+                if(data===false){
+                    toast.info('Already Added', {
+                        position: "top-center",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
+                    });
+                    setBookProduct(null);
+                   }
+            })
+        
     }
 
     

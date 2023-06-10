@@ -9,6 +9,12 @@ import SocilMedia from './SocialMedia/SocilMedia';
 import Contact from '../../Contact/Contact';
 import Slider from 'react-slick';
 import { AuthContext } from '../../../contexts/AuthProvider';
+import AllProducts from '../../AllProducts/AllProducts';
+import HomeProducts from '../../HomeProducts/HomeProducts';
+import Features from '../../Features/Features';
+import Ourteam from '../../Ourteam/Ourteam';
+import Testimonial from '../../Testimonial/Testimonial';
+import Stats from '../../Stats/Stats';
 
 
 const Home = () => {
@@ -107,7 +113,11 @@ const Home = () => {
           </Slider>
         </div>
       </div>
-    
+      <HomeProducts></HomeProducts>
+      <Features></Features>
+      <Ourteam></Ourteam>
+      <Testimonial></Testimonial>
+      <Stats></Stats>
       <Contact></Contact> 
     </div>
   );

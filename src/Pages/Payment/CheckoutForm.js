@@ -79,7 +79,6 @@ setProcessing(true);
           method:'POST',
           headers:{
             'content-type':'application/json',
-            authorization:`bearar ${localStorage.getItem('accessToken')}`
           },
           body:JSON.stringify(payment)
         })

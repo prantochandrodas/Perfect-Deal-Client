@@ -14,6 +14,7 @@ import MyProducts from "../Pages/MyProducts/MyProducts";
 import MyWishList from "../Pages/MyWishlist/MyWishList";
 import Payment from "../Pages/Payment/Payment";
 import Products from "../Pages/Products/Products";
+import SerchProduct from "../Pages/SerchProduct/SerchProduct";
 import Signup from "../Pages/Sigmup/Signup";
 import AdminRoute from "./AdminRoute";
 import PrivetRoute from "./PrivetRoute";
@@ -56,44 +57,76 @@ const router=createBrowserRouter([
             {
                 path:'/allProduct',
                 element:<AllProducts></AllProducts>
-            }
-        ]
-
-    },
-    {
-        path:'/dashBoard',
-        element:<DashboardLayout></DashboardLayout>,
-        children:[
+            },
             {
-                path:'/dashBoard',
+                path:'/serch',
+                element:<SerchProduct></SerchProduct>
+            }, {
+                path:'/myOrder',
                 element:<PrivetRoute><MyOrder></MyOrder></PrivetRoute>
             },
             {
-                path:'/dashBoard/wishList',
-                element:<MyWishList></MyWishList>
+                path:'/wishList',
+                element:<PrivetRoute><MyWishList></MyWishList></PrivetRoute>
             },
             {
-                path:'/dashBoard/allUsers',
-                element:<AllUsers></AllUsers>
+                path:'/allUsers',
+                element:<PrivetRoute><AllUsers></AllUsers></PrivetRoute>
             },
             {
-                path:'/dashBoard/allSellers',
-                element:<AllSellers></AllSellers>
+                path:'/allSellers',
+                element:<PrivetRoute><AllSellers></AllSellers></PrivetRoute>
             },
             {
-                path:'/dashBoard/addProduct',
-                element:<AddProduct></AddProduct>
+                path:'/addProduct',
+                element:<PrivetRoute><AddProduct></AddProduct></PrivetRoute>
             },
             {
-                path:'/dashBoard/myproducts',
-                element:<MyProducts></MyProducts>
+                path:'/myproducts',
+                element:<PrivetRoute><MyProducts></MyProducts></PrivetRoute>
             },
             {
-                path:'/dashBoard/payment/:id',
+                path:'/payment/:id',
                 element:<Payment></Payment>,
                  loader:({params})=>fetch(`https://perfect-deal-server.vercel.app/bookings/${params.id}`)
             }
         ]
-    }
+
+    },
+    // {
+    //     path:'/dashBoard',
+    //     element:<DashboardLayout></DashboardLayout>,
+    //     children:[
+    //         {
+    //             path:'/dashBoard',
+    //             element:<MyOrder></MyOrder>
+    //         },
+    //         {
+    //             path:'/dashBoard/wishList',
+    //             element:<MyWishList></MyWishList>
+    //         },
+    //         {
+    //             path:'/dashBoard/allUsers',
+    //             element:<AllUsers></AllUsers>
+    //         },
+    //         {
+    //             path:'/dashBoard/allSellers',
+    //             element:<AllSellers></AllSellers>
+    //         },
+    //         {
+    //             path:'/dashBoard/addProduct',
+    //             element:<AddProduct></AddProduct>
+    //         },
+    //         {
+    //             path:'/dashBoard/myproducts',
+    //             element:<MyProducts></MyProducts>
+    //         },
+    //         {
+    //             path:'/dashBoard/payment/:id',
+    //             element:<Payment></Payment>,
+    //              loader:({params})=>fetch(`https://perfect-deal-server.vercel.app/bookings/${params.id}`)
+    //         }
+    //     ]
+    // }
 ]);
 export default router;

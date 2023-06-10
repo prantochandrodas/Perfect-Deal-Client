@@ -8,8 +8,9 @@ import './HeaderNavbar.css'
 import { useQuery } from '@tanstack/react-query';
 import Spinner from '../../../Spinner/Spinner';
 const HeaderNavbar = () => {
-       const { user, logout } = useContext(AuthContext);
-    const [state, setState] = useState(false)
+    const { user, logout } = useContext(AuthContext);
+    console.log(user);
+    const [state, setState] = useState(false);
     const { data: getUser = [], isLoading, refetch } = useQuery({
         queryKey: ['getUser'],
         queryFn: () => fetch(`https://perfect-deal-server.vercel.app/getUser?email=${user?.email}`)
@@ -18,37 +19,58 @@ const HeaderNavbar = () => {
     // Replace javascript:void(0) path with your path
     const navigation = [
         { title: "Home", path: "/" },
-        { title: "blogs", path: "/blogs" },
-        {title:"Product",path:"/allProduct"},
-        { title: "DashBoard", path: "/dashBoard" }
+        // { title: "blogs", path: "/blogs" },
+        { title: "Product", path: "/allProduct" },
+        { title: "MyOrder", path: "/myOrder" }
     ]
 
     const isOpen = false;
 
- 
+
 
     const navigate = useNavigate();
     const handelLogout = () => {
         logout()
             .then(() => {
                 navigate('/login')
+                setState(!state)
             })
     }
-if(isLoading){
-    return <Spinner></Spinner>
-}
+    const handleSerch=event=>{
+        event.preventDefault();
+        const form=event.target;
+        const serch=form.serch.value;
+        console.log(serch);
+        localStorage.setItem('serch_text',serch);
+        navigate('/serch')
+    }
     return (
         <nav className="navbarColor z-30 w-full nav-border  md:border-0 md:static">
             <div className="items-center px-4 max-w-screen-xl mx-auto md:flex md:px-8">
                 <div className="flex items-center justify-between py-3 md:py-2 md:block">
-                    <a href="javascript:void(0)">
-                        <img
-                            src={logo}
-                            width={80}
-                            height={50}
-                            alt="Float UI logo"
-                        />
-                    </a>
+                    <div className='flex items-center justify-between'>
+                        <a href="javascript:void(0)">
+                            <img
+                                src={logo}
+                                width={80}
+                                height={50}
+                                alt="Float UI logo"
+                            />
+                        </a>
+                        <fieldset className="w-full space-y-1 text-black md:mx-2 mx-2 md:mt-0">
+                            <label for="Search" className="hidden">Search</label>
+                            <form className="relative" onSubmit={handleSerch}>
+                                <span className="absolute inset-y-0 left-0 flex items-center pl-2">
+                                    <button title="search" className="p-1 focus:outline-none focus:ring text-black">
+                                        <svg fill="currentColor" viewBox="0 0 512 512" className="w-4 h-4 text-black">
+                                            <path d="M479.6,399.716l-81.084-81.084-62.368-25.767A175.014,175.014,0,0,0,368,192c0-97.047-78.953-176-176-176S16,94.953,16,192,94.953,368,192,368a175.034,175.034,0,0,0,101.619-32.377l25.7,62.2L400.4,478.911a56,56,0,1,0,79.2-79.195ZM48,192c0-79.4,64.6-144,144-144s144,64.6,144,144S271.4,336,192,336,48,271.4,48,192ZM456.971,456.284a24.028,24.028,0,0,1-33.942,0l-76.572-76.572-23.894-57.835L380.4,345.771l76.573,76.572A24.028,24.028,0,0,1,456.971,456.284Z"></path>
+                                        </svg>
+                                    </button>
+                                </span>
+                                <input name='serch' type="text" placeholder="Search..." className="w-32 py-2 pl-10 text-sm rounded-md sm:w-auto focus:outline-none dark:bg-gray-800 dark:text-gray-100 focus:dark:bg-gray-900 focus:dark:border-violet-400" />
+                            </form>
+                        </fieldset>
+                    </div>
                     <div className="md:hidden">
                         <button className="text-color text-border outline-none p-2 rounded-md  focus:border"
                             onClick={() => setState(!state)}
@@ -68,32 +90,33 @@ if(isLoading){
                     </div>
                 </div>
                 <div className={`flex-1 justify-self-center pb-3 mt-8 md:block md:pb-0 md:mt-0 ${state ? 'block' : 'hidden'}`}>
-                    <ul className="text-color  justify-center items-center space-y-8 md:flex md:space-x-6 md:space-y-0">
+                    <ul className="navtext-color  justify-center items-center space-y-8 md:flex md:space-x-6 md:space-y-0">
                         {
                             navigation.map((item, idx) => {
                                 return (
-                                    <li key={idx} className="text-color  hover:text-indigo-600">
-                                        <NavLink to={item.path}>
+                                    <li key={idx} className="navtext-color  hover:text-indigo-600">
+                                        <NavLink to={item.path} onClick={() => setState(!state)}>
                                             {item.title}
                                         </NavLink>
                                     </li>
-                                   
+
                                 )
                             })
                         }
-                         {
+                        <li><NavLink to='/wishList'>My WishList</NavLink></li>
+                        {
                             getUser?.role === "seller" ?
                                 <>
-                                    <li><NavLink to='/dashBoard/addProduct'>Add Product</NavLink></li>
-                                    <li><NavLink to='/dashBoard/myproducts'>My products</NavLink></li>
+                                    <li><NavLink onClick={() => setState(!state)} to='/addProduct'>Add Product</NavLink></li>
+                                    <li><NavLink onClick={() => setState(!state)} to='/myproducts'>My products</NavLink></li>
                                 </> :
                                 <></>
                         }
                         {
                             getUser?.role === "admin" ?
                                 <>
-                                    <li><NavLink to='/dashBoard/allusers'>All Users</NavLink></li>
-                                    <li><NavLink to='/dashBoard/allSellers'>All Seller</NavLink></li>
+                                    <li><NavLink onClick={() => setState(!state)} to='/allusers'>All Users</NavLink></li>
+                                    <li><NavLink onClick={() => setState(!state)} to='/allSellers'>All Seller</NavLink></li>
                                 </> :
                                 <></>
                         }
@@ -117,10 +140,10 @@ if(isLoading){
                             ><button class="block rounded-full bg-white px-4 py-2 text-sm font-medium hover:bg-transparent" onClick={handelLogout}>Logout</button></Link>
                         </div> :
                         <div className='flex mt-4 lg:mt-0 mb-4 lg:mb-0'>
-                            <Link to='/login'><a className="inline-block rounded-full   hover:text-white focus:outline-none focus:ring active:text-opacity-75 btn-color"><button className="block rounded-full  px-4 py-2  font-medium">Login</button></a></Link>
+                            <Link to='/login'><a className="inline-block rounded-full   hover:text-white focus:outline-none focus:ring active:text-opacity-75 btn-color"><button onClick={() => setState(!state)} className="block rounded-full  px-4 py-2  font-medium">Login</button></a></Link>
                             <Link to='/signup'><a
                                 className="inline-block rounded-full btn-bg-color p-[2px] hover:text-white focus:outline-none focus:ring active:text-opacity-75 ml-2"
-                            ><button className="block rounded-full text-color px-4 py-2  font-medium hover:bg-transparent">SignUp</button></a></Link>
+                            ><button onClick={() => setState(!state)} className="block rounded-full navtext-color px-4 py-2  font-medium hover:bg-transparent">SignUp</button></a></Link>
                         </div>
                     }
                 </div>

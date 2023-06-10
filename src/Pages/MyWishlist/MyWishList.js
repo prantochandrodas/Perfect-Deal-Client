@@ -27,7 +27,7 @@ const MyWishList = () => {
 
     return (
         <div>
-            <div className='grid lg:grid-cols-2 p-2 gap-5 md:grid-cols-2 mt-10'>
+            <div className='grid lg:grid-cols-3 p-2 gap-5 md:grid-cols-2 mt-10 w-[90%] mx-auto'>
                 {
               wishLists &&  wishLists.map(wishlist => <MyWish
                         key={wishlist._id}
